@@ -1,0 +1,12 @@
+pkgname = "orm"
+output = "pkg/orm"
+no-test = true
+
+[mysql]
+dbname = "paddle"
+host = "db"
+port = 3306
+user = "root"
+pass = "password"
+sslmode = "false"
+blacklist = []
