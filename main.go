@@ -20,11 +20,23 @@ func main() {
 	)
 	routes.AddRoutes(
 		v1,
+		paddle.GetPreview()...,
+	)
+	routes.AddRoutes(
+		v1,
+		paddle.GetSources()...,
+	)
+	routes.AddRoutes(
+		v1,
 		paddle.CreateSource()...,
 	)
 	routes.AddRoutes(
 		v1,
 		paddle.CreateFeeds()...,
+	)
+	routes.AddRoutes(
+		v1,
+		paddle.CreateInterest()...,
 	)
 	r.Run(":10330") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

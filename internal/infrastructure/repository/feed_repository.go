@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/mmcdole/gofeed"
 	"github.com/mr-myself/paddle/internal/infrastructure/database"
@@ -9,6 +10,7 @@ import (
 	"github.com/mr-myself/paddle/pkg/orm"
 	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
+	. "github.com/volatiletech/sqlboiler/v4/queries/qm"
 )
 
 type feedRepository struct {
@@ -17,6 +19,13 @@ type feedRepository struct {
 // NewFeedRepository is a method to initialize the repository
 func NewFeedRepository() models.FeedRepository {
 	return &feedRepository{}
+}
+
+func (repo *feedRepository) All(sourceID int64) (orm.FeedSlice, error) {
+	fmt.Println("in repo")
+	return orm.Feeds(
+		Where("source_id = ?", sourceID),
+	).All(context.Background(), database.DBCon)
 }
 
 func (repo *feedRepository) Create(sourceID int64, item *gofeed.Item) (*orm.Feed, error) {

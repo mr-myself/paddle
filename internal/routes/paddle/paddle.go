@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mmcdole/gofeed"
 
 	"github.com/mr-myself/paddle/internal/infrastructure/repository"
 	"github.com/mr-myself/paddle/internal/usecase"
@@ -17,19 +18,63 @@ import (
 type getFeedsHandler struct {
 }
 
+type getSourcesHandler struct {
+}
+
 type createSourceHandler struct {
 }
 
 type createFeedsHandler struct {
 }
 
+type createInterestHandler struct {
+}
+
+type previewRequest struct {
+	Url string `json:"url"`
+}
+
 func (h *getFeedsHandler) handle(c *gin.Context) {
+	fmt.Println("hogehoge")
+	// sourceID, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	sourceID, err := strconv.ParseInt("1", 10, 64)
+
+	fmt.Println("fuga")
+	feedsRepo := repository.NewFeedRepository()
+	fmt.Println("poi")
+	feeds, err := feedsRepo.All(sourceID)
+	fmt.Println("gege")
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
+	} else {
+		c.JSON(http.StatusOK, feeds)
+	}
+}
+
+// curl -X POST -H "Content-Type: application/json" -d '{"url":"https://b.hatena.ne.jp/hotentry/it.rss"}' localhost:10330/v1/preview
+func (h *getFeedsHandler) preview(c *gin.Context) {
+	fp := gofeed.NewParser()
+	var previewRequest previewRequest
+	c.BindJSON(&previewRequest)
+	feed, err := fp.ParseURL(previewRequest.Url)
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
+	} else {
+		c.JSON(http.StatusOK, feed)
+	}
+}
+
+func (h *getSourcesHandler) handle(c *gin.Context) {
 	sourceRepo := repository.NewSourceRepository()
 	sources, err := sourceRepo.All()
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
 	} else {
+		fmt.Println(sources)
 		c.JSON(http.StatusOK, sources)
 	}
 }
@@ -73,13 +118,56 @@ func (*createFeedsHandler) receive(c *gin.Context) {
 	}
 }
 
+func (*createInterestHandler) receive(c *gin.Context) {
+	feedID, err := strconv.ParseInt(c.Param("feed_id"), 10, 64)
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
+		return
+	}
+
+	interestRepo := repository.NewInterestRepository()
+	if err = interestRepo.Create(feedID); err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
+	} else {
+		c.JSON(http.StatusOK, nil)
+	}
+}
+
 // GetFeeds fetches all feeds from sourceID
 func GetFeeds() routes.Routes {
 	handler := new(getFeedsHandler)
 
 	return routes.Routes{
 		{
-			Path:    "/",
+			Path:    "/sources/:id/feeds",
+			Method:  http.MethodGet,
+			Handler: handler.handle,
+		},
+	}
+}
+
+// GetPreview fetches all feeds from url
+func GetPreview() routes.Routes {
+	handler := new(getFeedsHandler)
+
+	return routes.Routes{
+		{
+			Path:    "/preview",
+			Method:  http.MethodPost,
+			Handler: handler.preview,
+		},
+	}
+}
+
+// GetSources shows all sources
+func GetSources() routes.Routes {
+	handler := new(getSourcesHandler)
+
+	return routes.Routes{
+		{
+			Path:    "/sources",
 			Method:  http.MethodGet,
 			Handler: handler.handle,
 		},
@@ -106,6 +194,19 @@ func CreateFeeds() routes.Routes {
 	return routes.Routes{
 		{
 			Path:    "/sources/:id/feeds",
+			Method:  http.MethodPost,
+			Handler: handler.receive,
+		},
+	}
+}
+
+// CreateInterest creates a association with the feed user opens the link
+func CreateInterest() routes.Routes {
+	handler := new(createInterestHandler)
+
+	return routes.Routes{
+		{
+			Path:    "/sources/:id/feeds/:feed_id/interest",
 			Method:  http.MethodPost,
 			Handler: handler.receive,
 		},

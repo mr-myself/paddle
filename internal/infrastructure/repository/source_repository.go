@@ -21,7 +21,7 @@ func NewSourceRepository() models.SourceRepository {
 
 func (repo *sourceRepository) Find(sourceID int64) (*orm.Source, error) {
 	return orm.Sources(
-		Where("source_id = ?", sourceID),
+		Where("id = ?", sourceID),
 	).One(context.Background(), database.DBCon)
 }
 
