@@ -31,8 +31,7 @@ $ docker-compose stop
 ```
 
 # Branch Model
-
-Just a suggestion -> [git flow model](https://nvie.com/posts/a-successful-git-branching-model/).
+Github Flow
 
 ## Pull Request Merge Conditions
 
