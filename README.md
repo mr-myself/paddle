@@ -37,7 +37,7 @@ Github Flow
 
 You can merge Pull Request when the following conditions are fulfilled.
 
-- PR should be approved by **at least 1 reviewer**.
+- PR should be approved by **at least 2 reviewers**.
 - The status checks, such as `lint` and `test`, should be passed.
 
 For more details, see the following protection rules.
