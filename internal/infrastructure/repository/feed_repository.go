@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/mmcdole/gofeed"
 	"github.com/mr-myself/paddle/internal/infrastructure/database"
@@ -22,7 +21,6 @@ func NewFeedRepository() models.FeedRepository {
 }
 
 func (repo *feedRepository) All(sourceID int64) (orm.FeedSlice, error) {
-	fmt.Println("in repo")
 	return orm.Feeds(
 		Where("source_id = ?", sourceID),
 	).All(context.Background(), database.DBCon)

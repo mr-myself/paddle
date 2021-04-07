@@ -1,3 +1,5 @@
 .cache
 .ash_history
 gin-bin
+
+*.swp
