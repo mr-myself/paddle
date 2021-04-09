@@ -1,5 +1,15 @@
 version: '3'
 services:
+  web:
+    build:
+      context: ./web
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./web:/home/app
+    ports:
+      - 3000:3000
+    command: /bin/sh -c "yarn install && yarn start"
   go:
     build:
       context: .
