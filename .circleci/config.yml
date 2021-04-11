@@ -1,0 +1,48 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+jobs:
+  test:
+    machine: true
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: docker-compose build
+          command: |
+            set -x
+            docker-compose build
+          no_output_timeout: 20m
+      - run:
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up -d
+          no_output_timeout: 20m
+      - run:
+          name: test
+          command: |
+            mkdir /tmp/test-results
+      - run:
+          name: docker-compose stop
+          command: |
+            set -x
+            docker-compose stop
+      - run:
+          name: docker-compose down
+          command: docker-compose down
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+workflows:
+  test:
+    jobs:
+      - test
