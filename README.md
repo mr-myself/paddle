@@ -2,15 +2,15 @@
 
 # Project Summary
 
-| Item                     | Description                                                                                        |
-| ------------------------ | -------------------------------------------------------------------------------------------------- |
-| Lang                     | Go v1.16                                                                                           |
-| WAF                      | Gin v1.6.3                                                                                         |
-| Database                 | MySQL 8.0                                                                                          |
-| ORM                      | SQLBoiler                                                                                          |
-| Application Architecture | [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) |
-| CI (Lint & Test)         | [CircleCI](https://circleci.com/)                                                                  |
-| CD (Deploy on XXX)       | [CircleCI](https://circleci.com/)                                                                  |
+| Item                     | Description                                                                                                           |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| Lang                     | Go v1.16                                                                                                              |
+| WAF                      | Gin v1.6.3                                                                                                            |
+| Database                 | MySQL 8.0                                                                                                             |
+| ORM                      | SQLBoiler                                                                                                             |
+| Application Architecture | [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)                    |
+| CI (Lint & Test)         | [![CircleCI](https://circleci.com/gh/ChubachiPT21/paddle.svg?style=svg)](https://circleci.com/gh/ChubachiPT21/paddle) |
+| CD (Deploy on XXX)       | [CircleCI](https://circleci.com/)                                                                                     |
 
 # Get Started
 
@@ -31,6 +31,7 @@ $ docker-compose stop
 ```
 
 # Branch Model
+
 Github Flow
 
 ## Pull Request Merge Conditions
