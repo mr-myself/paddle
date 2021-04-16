@@ -30,11 +30,9 @@ ENV APP_DIR /home/app
 
 WORKDIR $APP_DIR
 
-RUN addgroup -g 2000 -S app && \
-    adduser -u 2000 -S app -G app
-USER app
+USER node
 
-COPY --chown=app:app ./web $APP_DIR
+COPY --chown=node:node ./web $APP_DIR
 RUN yarn install
 
 CMD yarn build
