@@ -26,8 +26,9 @@ CMD go run main.go
 
 FROM node:14.16-alpine3.13 AS web
 
-ENV APP_DIR /home/app
+ENV APP_DIR /home/node
 
+RUN chgrp -R 0 $APP_DIR && chmod -R g+rwX $APP_DIR
 WORKDIR $APP_DIR
 
 USER node

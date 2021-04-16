@@ -7,7 +7,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./web:/home/app
+      - ./web:/home/node
     ports:
       - 13000:13000
     command: /bin/sh -c "yarn install && yarn start"
