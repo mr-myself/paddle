@@ -59,7 +59,7 @@ jobs:
           command: |
             CONNECTION_KEY_FINGERPRINT=<< parameters.connection_key_fingerprint >>
             DEPLOY_KEY_FINGERPRINT=<< parameters.deploy_key_fingerprint >>
-            scp -P ${SSH_PORT} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${CONNECTION_KEY_FINGERPRINT//:/} ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/} ${USERNAME}@${HOST}:/home/${USERNAME}/.ssh
+            scp -P ${SSH_PORT} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${CONNECTION_KEY_FINGERPRINT//:/} ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/} ${USERNAME}@${HOST}:/home/${USERNAME}/.ssh/id_rsa
       - run:
           name: Package Install
           command: |
@@ -82,7 +82,7 @@ jobs:
             GIT_PATH=/home/${USERNAME}/${CIRCLE_PROJECT_REPONAME}
             ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no ${USERNAME}@${HOST} \<< EOF
               if [[ ! -e ${GIT_PATH} ]]; then
-                GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/}" git clone ${CIRCLE_REPOSITORY_URL}
+                git clone ${CIRCLE_REPOSITORY_URL}
               fi
               cd ${GIT_PATH} && git checkout main && git pull
               sudo docker-compose stop && sudo docker-compose up -d
