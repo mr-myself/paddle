@@ -59,7 +59,7 @@ jobs:
           command: |
             CONNECTION_KEY_FINGERPRINT=<< parameters.connection_key_fingerprint >>
             DEPLOY_KEY_FINGERPRINT=<< parameters.deploy_key_fingerprint >>
-            scp -p ${SSH_PORT} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${CONNECTION_KEY_FINGERPRINT//:/} ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/} ${USERNAME}@${HOST}:/home/${USERNAME}/.ssh
+            scp -P ${SSH_PORT} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${CONNECTION_KEY_FINGERPRINT//:/} ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/} ${USERNAME}@${HOST}:/home/${USERNAME}/.ssh
       - run:
           name: Package Install
           command: |
