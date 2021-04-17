@@ -41,8 +41,61 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+  deploy:
+    machine: true
+    working_directory: ~/repo
+    parameters:
+      connection_key_fingerprint:
+        type: string
+      deploy_key_fingerprint:
+        type: string
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - << parameters.connection_key_fingerprint >>
+            - << parameters.deploy_key_fingerprint >>
+      - run:
+          name: Setup Deployment Key
+          command: |
+            CONNECTION_KEY_FINGERPRINT=<< parameters.connection_key_fingerprint >>
+            DEPLOY_KEY_FINGERPRINT=<< parameters.deploy_key_fingerprint >>
+            scp -p ${SSH_PORT} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${CONNECTION_KEY_FINGERPRINT//:/} ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/} ${USERNAME}@${HOST}:/home/${USERNAME}/.ssh
+      - run:
+          name: Package Install
+          command: |
+            COMPOSE_PATH=/usr/local/bin/docker-compose
+            ssh -o StrictHostKeyChecking=no ${USERNAME}@${HOST} \<< EOF
+              sudo yum update -y && sudo yum install -y git docker
+              if [[ ! -e ${COMPOSE_PATH} ]]; then
+                sudo curl -L https://github.com/docker/compose/releases/download/1.29.1/docker-compose-`uname -s`-`uname -m` -o ${COMPOSE_PATH}
+                sudo chmod +x ${COMPOSE_PATH}
+                sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+              fi
+              sudo systemctl start docker && sudo systemctl enable docker
+            EOF
+      - run:
+          name: Service Deployment
+          command: |
+            DEPLOY_KEY_FINGERPRINT=<< parameters.deploy_key_fingerprint >>
+            GIT_PATH=/home/${USERNAME}/${CIRCLE_PROJECT_REPONAME}
+            ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no ${USERNAME}@${HOST} \<< EOF
+              if [[ ! -e ${GIT_PATH} ]]; then
+                GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_${DEPLOY_KEY_FINGERPRINT//:/}" git clone ${CIRCLE_REPOSITORY_URL}
+              fi
+              cd ${GIT_PATH} && git checkout main && git pull
+              sudo docker-compose stop && sudo docker-compose up -d
+            EOF
 
 workflows:
-  test:
+  test-and-deploy:
     jobs:
       - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
+          connection_key_fingerprint: 3b:67:c0:14:65:66:df:39:ac:ac:a8:e7:d9:73:d0:9c
+          deploy_key_fingerprint: aa:04:58:74:f8:7b:56:f4:47:47:cb:42:ab:70:2a:c8
