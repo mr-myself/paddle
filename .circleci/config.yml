@@ -67,10 +67,10 @@ jobs:
             ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no ${USERNAME}@${HOST} \<< EOF
               sudo yum update -y && sudo yum install -y git docker
               if [[ ! -e ${COMPOSE_PATH} ]]; then
-                # sudo curl -L https://github.com/docker/compose/releases/download/1.29.1/docker-compose-`uname -s`-`uname -m` -o ${COMPOSE_PATH}
-                # sudo chmod +x ${COMPOSE_PATH}
-                sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o ${COMPOSE_PATH}
-                sudo chmod +x /${COMPOSE_PATH}
+                sudo curl -L https://github.com/docker/compose/releases/download/1.29.1/docker-compose-`uname -s`-`uname -m` -o ${COMPOSE_PATH}
+                sudo chmod +x ${COMPOSE_PATH}
+                # sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o ${COMPOSE_PATH}
+                # sudo chmod +x /${COMPOSE_PATH}
                 sudo ln -s ${COMPOSE_PATH} /usr/bin/docker-compose
               fi
               sudo systemctl start docker && sudo systemctl enable docker
