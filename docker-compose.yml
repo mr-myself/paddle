@@ -28,7 +28,8 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_DATABASE: paddle
-      MYSQL_USER: root
+      MYSQL_USER: apuser
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
