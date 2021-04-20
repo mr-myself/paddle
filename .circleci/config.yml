@@ -103,5 +103,5 @@ workflows:
           #   branches:
           #     only:
           #       - main
-          connection_key_fingerprint: 84:38:b0:a7:23:36:d0:d6:a2:9e:2e:83:e7:0b:35:f2
+          connection_key_fingerprint: 3b:67:c0:14:65:66:df:39:ac:ac:a8:e7:d9:73:d0:9c
           deploy_key_fingerprint: aa:04:58:74:f8:7b:56:f4:47:47:cb:42:ab:70:2a:c8
