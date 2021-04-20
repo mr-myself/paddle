@@ -81,7 +81,6 @@ jobs:
       - run:
           name: Service Deployment
           command: |
-            DEPLOY_KEY_FINGERPRINT=<< parameters.deploy_key_fingerprint >>
             GIT_PATH=/home/${USERNAME}/${CIRCLE_PROJECT_REPONAME}
             ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no ${USERNAME}@${HOST} \<< EOF
               ssh-keyscan github.com > ~/.ssh/known_hosts
@@ -95,13 +94,13 @@ jobs:
 workflows:
   test-and-deploy:
     jobs:
-      # - test
+      - test
       - deploy:
-          # requires:
-          #   - test
-          # filters:
-          #   branches:
-          #     only:
-          #       - main
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
           connection_key_fingerprint: 3b:67:c0:14:65:66:df:39:ac:ac:a8:e7:d9:73:d0:9c
           deploy_key_fingerprint: aa:04:58:74:f8:7b:56:f4:47:47:cb:42:ab:70:2a:c8
