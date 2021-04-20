@@ -84,6 +84,7 @@ jobs:
             DEPLOY_KEY_FINGERPRINT=<< parameters.deploy_key_fingerprint >>
             GIT_PATH=/home/${USERNAME}/${CIRCLE_PROJECT_REPONAME}
             ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no ${USERNAME}@${HOST} \<< EOF
+              ssh-keyscan github.com > ~/.ssh/known_hosts
               if [[ ! -e ${GIT_PATH} ]]; then
                 git clone ${CIRCLE_REPOSITORY_URL}
               fi
