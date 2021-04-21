@@ -92,9 +92,20 @@ jobs:
             EOF
 
 workflows:
+  test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - main
   test-and-deploy:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              only:
+                - main
       - deploy:
           requires:
             - test
