@@ -10,7 +10,7 @@ services:
       - ./web:/home/node
     ports:
       - 13000:13000
-    command: /bin/sh -c "yarn install && yarn start"
+    command: /bin/sh -c "yarn install --network-timeout 1000000 && yarn start"
   go:
     build:
       context: .
