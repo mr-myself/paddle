@@ -49,4 +49,13 @@ TBD
 
 ## CI/CD Pipeline
 
-TBD
+You have to set EC2 connection key, GitHub deployment key, and the variables below in the CircleCI's Project Settings.
+
+- EC2 connection key: the key you get or set in creating an EC2 Instance.
+- GitHub deployment key: the key you can set in the GitHub's Project Settings.
+
+| Environment Key                 | Description                                                               |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| USERNAME                        | EC2 Username                                                              |
+| HOST                            | EC2 Hostname or IP Address                                                |
+| SSH_PORT                        | EC2 SSH Port                                                              |
