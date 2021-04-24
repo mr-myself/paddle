@@ -20,7 +20,7 @@ jobs:
           command: |
             cd web && yarn install
             yarn lintfix
-            if [[ -z "$(git status --porcelain)" ]]; then
+            if [[ ! -z "$(git status --porcelain)" ]];
               git config user.email "chubachi+pt+circleci@users.noreply.github.com"
               git config user.name "chubachi+pt+circleci"
               git add .
