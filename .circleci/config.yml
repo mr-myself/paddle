@@ -19,7 +19,7 @@ jobs:
           name: Execute Lintfix
           command: |
             cd web && yarn install
-            yarn lintfix
+            yarn lintfix || true
             if [[ ! -z "$(git status --porcelain)" ]];
               git config user.email "chubachi+pt+circleci@users.noreply.github.com"
               git config user.name "chubachi+pt+circleci"
