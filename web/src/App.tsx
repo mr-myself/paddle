@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './styles/App.scss';
+import React from 'react'
+import logo from './logo.svg'
+import './styles/App.scss'
 
 const App: React.FC = () => (
   <div className="App">
@@ -19,6 +19,6 @@ const App: React.FC = () => (
       </a>
     </header>
   </div>
-);
+)
 
-export default App;
+export default App
