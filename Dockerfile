@@ -13,7 +13,8 @@ RUN addgroup -g 1000 -S app && \
 RUN apk update && \
     apk add mysql-client \
     gcc \
-    curl
+    curl \
+    musl-dev
 RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.11.0/migrate.linux-amd64.tar.gz | tar xvz
 RUN mv ./migrate.linux-amd64 /usr/bin/migrate
 
