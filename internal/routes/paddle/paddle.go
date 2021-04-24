@@ -39,7 +39,6 @@ type previewRequest struct {
 func (h *getFeedsHandler) handle(c *gin.Context) {
 	sourceID, err := strconv.ParseInt("1", 10, 64)
 
-	// feedsRepo := repository.NewFeedRepository()
 	feeds, err := h.repo.All(sourceID)
 	if err != nil {
 		fmt.Println(err)
