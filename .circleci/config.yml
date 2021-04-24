@@ -27,7 +27,9 @@ jobs:
       - run:
           name: test
           command: |
-            mkdir /tmp/test-results
+            test_results_path=/tmp/test-results
+            mkdir ${test_results_path}
+            docker-compose exec go sh -c "go test -v ./internal/... 2>&1 | go-junit-report" > ${test_results_path}/test-results.xml
       - run:
           name: docker-compose stop
           command: |

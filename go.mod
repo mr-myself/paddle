@@ -1,4 +1,4 @@
-module github.com/mr-myself/paddle
+module github.com/ChubachiPT21/paddle
 
 go 1.15
 
@@ -9,6 +9,7 @@ require (
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/mock v1.5.0
+	github.com/jstemmer/go-junit-report v0.9.1 // indirect
 	github.com/kat-co/vala v0.0.0-20170210184112-42e1d8b61f12
 	github.com/mmcdole/gofeed v1.1.0
 	github.com/spf13/viper v1.6.3

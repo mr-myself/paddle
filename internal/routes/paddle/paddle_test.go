@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/assert/v2"
 	"github.com/golang/mock/gomock"
-	"github.com/mr-myself/paddle/internal/models"
-	"github.com/mr-myself/paddle/internal/routes/paddle"
-	"github.com/mr-myself/paddle/pkg/orm"
+	"github.com/ChubachiPT21/paddle/internal/models"
+	"github.com/ChubachiPT21/paddle/internal/routes/paddle"
+	"github.com/ChubachiPT21/paddle/pkg/orm"
 )
 
 func TestGetFeedsHandler_handle(t *testing.T) {
