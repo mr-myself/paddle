@@ -5,26 +5,24 @@ import RssLogo from '../atoms/RssIcon'
 import SignUpLogo from '../atoms/SignUp'
 import SignInLogo from '../atoms/SignIn'
 
-
-
 const Header = () => {
-
-    return (
+  return (
     <header>
-        <RssLogo/>
-        <div style={{ position: 'absolute', right: 700,top:0  }} >
-        <ExploreLogo/>
+      <RssLogo />
+      <div style={{ position: 'absolute', right: 170, top: 0 }}>
+        <ExploreLogo />
+      </div>
+      <div style={{ position: 'absolute', right: 280, top: 0 }}>
         <HomeLogo />
-        </div>
-        <div style={{ position: 'absolute', right: 70,top:10  }} >
+      </div>
+      <div style={{ position: 'fixed', right: 70, top: 10 }}>
         <SignUpLogo />
-        </div>
-        <div style={{ position: 'absolute', right: 0,top:10  }} >
+      </div>
+      <div style={{ position: 'absolute', right: 0, top: 10 }}>
         <SignInLogo />
-        </div>
-        
+      </div>
     </header>
-    )
+  )
 }
- 
+
 export default Header
