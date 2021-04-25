@@ -13,11 +13,13 @@ const Header = () => {
         <Col sm={4}>
           <RssLogo />
         </Col>
-        <Col sm={4}>
-          <ExploreLogo />
+        <Col sm={2}>
           <HomeLogo />
         </Col>
-        <Col sm={4}>
+        <Col sm={2}>
+          <ExploreLogo />
+        </Col>
+        <Col sm={3}>
           <SignUpLogo />
           <SignInLogo />
         </Col>
