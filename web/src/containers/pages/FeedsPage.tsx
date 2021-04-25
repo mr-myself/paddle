@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Container, Row, Col } from 'react-grid-system'
 import SourceList from 'src/containers/organisms/SourceList'
 import IconAll from 'src/images/All.svg'

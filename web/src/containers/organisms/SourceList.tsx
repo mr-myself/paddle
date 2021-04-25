@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import SourceInList from 'src/components/molecules/SourceInList'
 import { ISource } from 'src/type'
 
