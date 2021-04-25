@@ -19,9 +19,11 @@ const Header = () => {
         <Col sm={2}>
           <ExploreLogo />
         </Col>
+        <Col sm={1}>
+          <SignInLogo />
+        </Col>
         <Col sm={3}>
           <SignUpLogo />
-          <SignInLogo />
         </Col>
       </Row>
     </Container>
