@@ -25,12 +25,6 @@ jobs:
             docker-compose up -d
           no_output_timeout: 20m
       - run:
-          name: test
-          command: |
-            test_results_path=/tmp/test-results
-            mkdir -p ${test_results_path}
-            docker-compose exec go sh -c "go test -v ./internal/... 2>&1"
-      - run:
           name: docker-compose stop
           command: |
             set -x
@@ -38,6 +32,14 @@ jobs:
       - run:
           name: docker-compose down
           command: docker-compose down
+      - run:
+          name: test
+          command: |
+            test_results_path=/tmp/test-results
+            mkdir -p ${test_results_path}
+            docker run -it --name go_test paddle_go \
+              sh -c "go get -u github.com/jstemmer/go-junit-report && go test -v ./internal/... 2>&1 | go-junit-report" \
+              > ${test_results_path}
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
