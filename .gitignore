@@ -1,6 +1,7 @@
 .cache
 .ash_history
 gin-bin
+db-data
 
 *.swp
 .npm
