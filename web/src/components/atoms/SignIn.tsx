@@ -1,11 +1,7 @@
 import React from 'react'
 import SignInIcon from '../../images/SignIn.svg'
 
-const SignInLogo = () => {
-  return (
-    <div style={{ position: 'absolute', top: 10 }}>
-      <img src={SignInIcon} alt="SignInLogo" />
-    </div>
-  )
+const SignIn = () => {
+  return <button type="button">Sign In</button>
 }
-export default SignInLogo
+export default SignIn

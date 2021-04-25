@@ -8,7 +8,7 @@ import SignInLogo from '../atoms/SignIn'
 
 const Header = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col sm={4}>
           <RssLogo />
