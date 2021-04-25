@@ -37,9 +37,7 @@ jobs:
           command: |
             test_results_path=/tmp/test-results
             mkdir -p ${test_results_path}
-            docker run -it --name go_test paddle_go \
-              sh -c "go get -u github.com/jstemmer/go-junit-report && go test -v ./internal/... 2>&1 | go-junit-report" \
-              > ${test_results_path}/result.xml
+            docker run -it --name go_test paddle_go go test -v ./internal/...
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
