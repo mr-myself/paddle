@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/ChubachiPT21/paddle/internal/infrastructure/database"
@@ -14,6 +15,8 @@ func main() {
 	database.Init()
 
 	r := gin.New()
+	r.Use(cors.Default())
+
 	v1 := r.Group("/v1")
 	routes.AddRoutes(
 		v1,
