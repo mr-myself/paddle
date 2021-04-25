@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import FeedsPage from './containers/pages/FeedsPage';
+import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import store from './store'
 
@@ -14,7 +14,7 @@ ReactDOM.render(
     <React.StrictMode>
       <Router>
         <Switch>
-          <Route exact path="/app" component={App} />
+          <Route exact path="/" component={FeedsPage} />
         </Switch>
       </Router>
     </React.StrictMode>
