@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
+import Header from '../../components/molecules/Header';
 
 const FeedsPage: FC = () => (
-  <div>
-    <span>test</span>
-  </div>
+  < Header/>
 );
 
 export default FeedsPage;
