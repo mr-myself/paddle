@@ -1,28 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import FeedsPage from './containers/pages/FeedsPage';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import store from './store';
+import store from './store'
 
-const configuredStore = store;
+const configuredStore = store
 
 ReactDOM.render(
   <Provider store={configuredStore}>
     <React.StrictMode>
       <Router>
         <Switch>
-          <Route exact path="/app" component={App} />
+          <Route exact path="/" component={FeedsPage} />
         </Switch>
       </Router>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
