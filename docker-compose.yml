@@ -7,7 +7,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./web:/home/node
+      - ./web:/home/node:cached
     ports:
       - 13000:13000
     command: /bin/sh -c "yarn install --network-timeout 1000000 && yarn start"
@@ -18,7 +18,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - .:/home/app
+      - .:/home/app:cached
     ports:
       - 10330:10330
     depends_on:
@@ -34,7 +34,7 @@ services:
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-      - db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql:delegated
     ports:
       - 8001:3306
 

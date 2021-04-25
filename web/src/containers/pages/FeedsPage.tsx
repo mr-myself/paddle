@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { Container, Row, Col } from 'react-grid-system';
-import SourceList from 'src/containers/organisms/SourceList';
-import IconAll from 'src/images/All.svg';
-import IconAddSource from 'src/images/AddSource.svg';
+import { FC } from 'react'
+import { Container, Row, Col } from 'react-grid-system'
+import SourceList from 'src/containers/organisms/SourceList'
+import IconAll from 'src/images/All.svg'
+import IconAddSource from 'src/images/AddSource.svg'
 
 const FeedsPage: FC = () => (
   <div className="fullHeight">
@@ -36,6 +36,6 @@ const FeedsPage: FC = () => (
       </Col>
     </Row>
   </div>
-);
+)
 
-export default FeedsPage;
+export default FeedsPage
