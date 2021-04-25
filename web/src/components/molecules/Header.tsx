@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container, Row, Col } from 'react-grid-system'
 import ExploreLogo from '../atoms/Explore'
 import HomeLogo from '../atoms/Home'
 import RssLogo from '../atoms/RssIcon'
@@ -7,22 +8,21 @@ import SignInLogo from '../atoms/SignIn'
 
 const Header = () => {
   return (
-    <header>
-      <RssLogo />
-      <div style={{ position: 'absolute', right: 170, top: 0 }}>
-        <ExploreLogo />
-      </div>
-      <div style={{ position: 'absolute', right: 280, top: 0 }}>
-        <HomeLogo />
-      </div>
-      <div style={{ position: 'fixed', right: 70, top: 10 }}>
-        <SignUpLogo />
-      </div>
-      <div style={{ position: 'absolute', right: 0, top: 10 }}>
-        <SignInLogo />
-      </div>
-    </header>
+    <Container>
+      <Row>
+        <Col sm={4}>
+          <RssLogo />
+        </Col>
+        <Col sm={4}>
+          <ExploreLogo />
+          <HomeLogo />
+        </Col>
+        <Col sm={4}>
+          <SignUpLogo />
+          <SignInLogo />
+        </Col>
+      </Row>
+    </Container>
   )
 }
-
 export default Header
