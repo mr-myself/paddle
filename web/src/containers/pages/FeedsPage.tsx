@@ -4,11 +4,12 @@ import { Container, Row, Col } from 'react-grid-system'
 import SourceList from 'src/containers/organisms/SourceList'
 import IconAll from 'src/images/All.svg'
 import IconAddSource from 'src/images/AddSource.svg'
+import FeedList from 'src/containers/organisms/FeedList'
 
 const FeedsPage: FC = () => (
   <div className="fullHeight">
     <Row style={{ height: '100%' }}>
-      <Col md={4} style={{ height: '100%' }}>
+      <Col md={4} lg={3} style={{ height: '100%' }}>
         <div className="sidebar">
           <div className="sidebar__title">
             <span>FEEDS</span>
@@ -30,9 +31,9 @@ const FeedsPage: FC = () => (
           </div>
         </div>
       </Col>
-      <Col md={8}>
+      <Col md={8} lg={9}>
         <Container>
-          <span>feeds list</span>
+          <FeedList />
         </Container>
       </Col>
     </Row>
