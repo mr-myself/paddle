@@ -5,6 +5,7 @@ import SourceList from 'src/containers/organisms/SourceList'
 import IconAll from 'src/images/All.svg'
 import IconAddSource from 'src/images/AddSource.svg'
 import FeedList from 'src/containers/organisms/FeedList'
+import Header from '../../components/molecules/Header'
 
 const FeedsPage: FC = () => (
   <div className="fullHeight">
