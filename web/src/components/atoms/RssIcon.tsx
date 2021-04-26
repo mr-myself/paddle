@@ -1,11 +1,11 @@
 import React from 'react'
 import RssIcon from '../../images/RssIcon.svg'
 
-const RssLogo = () => {
+const SignUp = () => {
   return (
     <div style={{ position: 'absolute', top: 10 }}>
-      <img src={RssIcon} alt="Rsslogo" />
+      <img src={RssIcon} alt="RssIcon" />
     </div>
   )
 }
-export default RssLogo
+export default SignUp

@@ -9,6 +9,10 @@ import Header from '../../components/molecules/Header'
 
 const FeedsPage: FC = () => (
   <div className="fullHeight">
+    <div style={{ height: 50 }}>
+      <Header />
+    </div>
+
     <Row style={{ height: '100%' }}>
       <Col md={4} lg={3} style={{ height: '100%' }}>
         <div className="sidebar">
