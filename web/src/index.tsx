@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import FeedsPage from 'src/containers/pages/FeedsPage'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import FeedsPage from './containers/pages/FeedsPage'
 import reportWebVitals from './reportWebVitals'
+import 'src/styles/App.scss'
 
 import store from './store'
 
