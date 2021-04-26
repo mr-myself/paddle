@@ -9,22 +9,20 @@ import SignInLogo from '../atoms/SignIn'
 const Header = () => {
   return (
     <Container fluid>
-      <Row>
-        <Col sm={4}>
+      <Row justify="between">
+        <div>
           <RssLogo />
-        </Col>
-        <Col sm={2}>
+        </div>
+        <div>
           <HomeLogo />
-        </Col>
-        <Col sm={2}>
+        </div>
+        <div>
           <ExploreLogo />
-        </Col>
-        <Col sm={1}>
+        </div>
+        <div>
           <SignInLogo />
-        </Col>
-        <Col sm={3}>
           <SignUpLogo />
-        </Col>
+        </div>
       </Row>
     </Container>
   )
