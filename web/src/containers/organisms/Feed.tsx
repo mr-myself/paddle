@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Container, Row, Col } from 'react-grid-system'
+import { Row, Col } from 'react-grid-system'
 import { IFeed } from 'src/type'
 
 // hasVisited will be decided by checking interests table.
@@ -12,7 +12,6 @@ const Feed: FC<Props> = ({ feed, hasVisited }) => {
   const onClick = () => {
     // create the click log (go)
     // visit the web
-    console.log('click')
     window.open(feed.feedUrl, '_blank')
   }
 
