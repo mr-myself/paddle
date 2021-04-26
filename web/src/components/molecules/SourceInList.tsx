@@ -5,13 +5,13 @@ type Props = {
   source: ISource
 }
 
-const SourceInList: FC<Props> = (props) => (
+const SourceInList: FC<Props> = ({ source }) => (
   <div className="source">
     <div>
-      <span className="source__title">{props.source.title}</span>
+      <span className="source__title">{source.title}</span>
     </div>
     <div>
-      <span className="source__count">{props.source.count}</span>
+      <span className="source__count">{source.count}</span>
     </div>
   </div>
 )
