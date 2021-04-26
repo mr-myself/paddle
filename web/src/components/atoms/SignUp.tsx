@@ -1,5 +1,4 @@
 import React from 'react'
-import SignUpIcon from '../../images/SignUp.svg'
 
 const style: React.CSSProperties = {
   background: 'transparent',

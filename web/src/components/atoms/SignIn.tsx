@@ -1,5 +1,4 @@
 import React from 'react'
-import SignInIcon from '../../images/SignIn.svg'
 
 const style: React.CSSProperties = {
   background: 'transparent',

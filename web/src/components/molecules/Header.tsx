@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-grid-system'
+import { Container, Row } from 'react-grid-system'
 import ExploreLogo from '../atoms/Explore'
 import HomeLogo from '../atoms/Home'
 import SignUpLogo from '../atoms/SignUp'
