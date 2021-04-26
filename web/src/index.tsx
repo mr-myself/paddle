@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import FeedsPage from './containers/pages/FeedsPage';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import './styles/App.scss'
+import reportWebVitals from './reportWebVitals'
+
+import FeedsPage from './containers/pages/FeedsPage'
 
 import store from './store'
 
