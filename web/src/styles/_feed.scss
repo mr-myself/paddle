@@ -1,0 +1,39 @@
+.feedList {
+  padding-top: 30px;
+
+  &__title {
+    color: #1a3b60;
+    font-size: 28px;
+    margin-bottom: 35px;
+  }
+
+  .feed {
+    cursor: pointer;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    &--visited {
+      background: #efefef;
+    }
+
+    &__eyecatch {
+      img {
+        width: 100%;
+      }
+    }
+
+    &__title {
+      color: #000;
+    }
+
+    &__sourceTitle {
+      margin-top: 8px;
+      color: #83a0c1;
+    }
+
+    &__content {
+      margin-top: 8px;
+      color: #9e9b9b;
+    }
+  }
+}
