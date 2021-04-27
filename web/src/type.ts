@@ -12,3 +12,9 @@ export interface IFeed {
   content: string
   imageUrl: string
 }
+
+export enum FeedActionTypes {
+  FETCH_FEEDS_START = '@@feeds/FETCH_FEEDS_START',
+  FETCH_FEEDS_SUCCESS = '@@feeds/FETCH_FEEDS_SUCCESS',
+  FETCH_FEEDS_ERROR = '@@feeds/FETCH_FEEDS_ERROR',
+}

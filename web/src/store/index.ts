@@ -1,11 +1,9 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-import reducer from '../reducers'
+import reducers from '../reducers'
 
 const initialState = {}
-
-const reducers = combineReducers({ reducer })
 
 let middlewares
 if (process.env.NODE_ENV !== 'production') {
