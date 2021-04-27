@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/cespare/reflex v0.3.0 // indirect
 	github.com/friendsofgo/errors v0.9.2
+	github.com/gin-contrib/cors v1.3.1 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/go-sql-driver/mysql v1.5.0
