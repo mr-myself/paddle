@@ -6,6 +6,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mr-myself/paddle/internal/infrastructure/database"
+	"github.com/mr-myself/paddle/internal/infrastructure/repository"
 	"github.com/mr-myself/paddle/internal/routes/paddle"
 	"github.com/mr-myself/paddle/pkg/routes"
 )
@@ -19,7 +20,7 @@ func main() {
 	v1 := r.Group("/v1")
 	routes.AddRoutes(
 		v1,
-		paddle.GetFeeds()...,
+		paddle.GetFeeds(repository.NewFeedRepository())...,
 	)
 	routes.AddRoutes(
 		v1,

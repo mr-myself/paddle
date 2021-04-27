@@ -10,12 +10,14 @@ import (
 	"github.com/mmcdole/gofeed"
 
 	"github.com/mr-myself/paddle/internal/infrastructure/repository"
+	"github.com/mr-myself/paddle/internal/models"
 	"github.com/mr-myself/paddle/internal/usecase"
 	"github.com/mr-myself/paddle/pkg/orm"
 	"github.com/mr-myself/paddle/pkg/routes"
 )
 
 type getFeedsHandler struct {
+	repo models.FeedRepository
 }
 
 type getSourcesHandler struct {
@@ -35,11 +37,9 @@ type previewRequest struct {
 }
 
 func (h *getFeedsHandler) handle(c *gin.Context) {
-	// sourceID, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	sourceID, err := strconv.ParseInt("1", 10, 64)
 
-	feedsRepo := repository.NewFeedRepository()
-	feeds, err := feedsRepo.All(sourceID)
+	feeds, err := h.repo.All(sourceID)
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
@@ -132,8 +132,8 @@ func (*createInterestHandler) receive(c *gin.Context) {
 }
 
 // GetFeeds fetches all feeds from sourceID
-func GetFeeds() routes.Routes {
-	handler := new(getFeedsHandler)
+func GetFeeds(repo models.FeedRepository) routes.Routes {
+	handler := getFeedsHandler{repo}
 
 	return routes.Routes{
 		{
