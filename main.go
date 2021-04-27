@@ -5,10 +5,10 @@ import (
 	"github.com/gin-contrib/cors"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/mr-myself/paddle/internal/infrastructure/database"
-	"github.com/mr-myself/paddle/internal/infrastructure/repository"
-	"github.com/mr-myself/paddle/internal/routes/paddle"
-	"github.com/mr-myself/paddle/pkg/routes"
+	"github.com/ChubachiPT21/paddle/internal/infrastructure/database"
+	"github.com/ChubachiPT21/paddle/internal/infrastructure/repository"
+	"github.com/ChubachiPT21/paddle/internal/routes/paddle"
+	"github.com/ChubachiPT21/paddle/pkg/routes"
 )
 
 func main() {

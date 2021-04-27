@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/mmcdole/gofeed"
-	"github.com/mr-myself/paddle/pkg/orm"
+	"github.com/ChubachiPT21/paddle/pkg/orm"
 )
 
 // InterestRepository is an interface

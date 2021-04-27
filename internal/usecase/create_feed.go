@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/mmcdole/gofeed"
-	"github.com/mr-myself/paddle/internal/infrastructure/repository"
+	"github.com/ChubachiPT21/paddle/internal/infrastructure/repository"
 )
 
 // CreateFeed is an usecase to create feeds from the source
