@@ -8,6 +8,7 @@ services:
     tty: true
     volumes:
       - ./web:/home/node:cached
+      - /home/node/node_modules
     ports:
       - 13000:13000
     command: /bin/sh -c "yarn install --network-timeout 1000000 && yarn start"
