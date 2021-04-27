@@ -21,7 +21,7 @@ interface IFetchFeedsError extends Action {
   }
 }
 
-export const fetchFeedsBegin = (): IFetchFeedsAction => ({
+const fetchFeedsBegin = (): IFetchFeedsAction => ({
   type: FeedActionTypes.FETCH_FEEDS_START,
 })
 
