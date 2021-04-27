@@ -1,6 +1,43 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 jobs:
+  lint:
+    docker:
+      - image: cimg/node:14.16.1
+    working_directory: ~/repo
+    parameters:
+      commit_key_fingerprint:
+        type: string
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - << parameters.commit_key_fingerprint >>
+      - restore_cache:
+          key: v1-node-{{ checksum "./web/yarn.lock" }}
+      - run:
+          name: Execute Lintfix
+          command: |
+            cd web && yarn install
+            yarn lintfix
+            if [[ ! -z "$(git status --porcelain)" ]]; then
+              git config user.email "chubachi+pt+circleci@users.noreply.github.com"
+              git config user.name "chubachi+pt+circleci"
+              git add .
+              ssh-keyscan github.com > ~/.ssh/known_hosts
+              git commit -m "[skip ci] lintfix"
+              git push --set-upstream origin ${CIRCLE_BRANCH}
+            fi
+      - save_cache:
+          key: v1-node-{{ checksum "./web/yarn.lock" }}
+          paths:
+            - ./web/node_modules
+      - run:
+          name: Execute Lint
+          command: |
+            cd web
+            yarn lint
+
   test:
     machine: true
     working_directory: ~/repo
@@ -71,8 +108,6 @@ jobs:
               if [[ ! -e ${COMPOSE_PATH} ]]; then
                 sudo curl -L https://github.com/docker/compose/releases/download/1.29.1/docker-compose-`uname -s`-`uname -m` -o ${COMPOSE_PATH}
                 sudo chmod +x ${COMPOSE_PATH}
-                # sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o ${COMPOSE_PATH}
-                # sudo chmod +x /${COMPOSE_PATH}
                 sudo ln -s ${COMPOSE_PATH} /usr/bin/docker-compose
               fi
               sudo systemctl start docker && sudo systemctl enable docker
@@ -96,7 +131,15 @@ jobs:
 workflows:
   test:
     jobs:
+      - lint:
+          commit_key_fingerprint: fa:da:78:fd:d7:ab:c3:8f:48:4c:ca:e7:2b:32:81:b6
+          filters:
+            branches:
+              ignore:
+                - main
       - test:
+          requires:
+            - lint
           filters:
             branches:
               ignore:
@@ -109,11 +152,11 @@ workflows:
               only:
                 - main
       - deploy:
+          connection_key_fingerprint: 3b:67:c0:14:65:66:df:39:ac:ac:a8:e7:d9:73:d0:9c
+          deploy_key_fingerprint: aa:04:58:74:f8:7b:56:f4:47:47:cb:42:ab:70:2a:c8
           requires:
             - test
           filters:
             branches:
               only:
                 - main
-          connection_key_fingerprint: 3b:67:c0:14:65:66:df:39:ac:ac:a8:e7:d9:73:d0:9c
-          deploy_key_fingerprint: aa:04:58:74:f8:7b:56:f4:47:47:cb:42:ab:70:2a:c8
