@@ -9,11 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mmcdole/gofeed"
 
-	"github.com/mr-myself/paddle/internal/infrastructure/repository"
-	"github.com/mr-myself/paddle/internal/models"
-	"github.com/mr-myself/paddle/internal/usecase"
-	"github.com/mr-myself/paddle/pkg/orm"
-	"github.com/mr-myself/paddle/pkg/routes"
+	"github.com/ChubachiPT21/paddle/internal/infrastructure/repository"
+	"github.com/ChubachiPT21/paddle/internal/models"
+	"github.com/ChubachiPT21/paddle/internal/usecase"
+	"github.com/ChubachiPT21/paddle/pkg/orm"
+	"github.com/ChubachiPT21/paddle/pkg/routes"
 )
 
 type getFeedsHandler struct {

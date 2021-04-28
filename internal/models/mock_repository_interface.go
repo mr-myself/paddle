@@ -10,7 +10,7 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 	gofeed "github.com/mmcdole/gofeed"
-	orm "github.com/mr-myself/paddle/pkg/orm"
+	orm "github.com/ChubachiPT21/paddle/pkg/orm"
 )
 
 // MockInterestRepository is a mock of InterestRepository interface.

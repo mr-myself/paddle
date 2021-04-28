@@ -1,12 +1,22 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-grid-system'
+import { useDispatch } from 'react-redux'
 import SourceList from 'src/containers/organisms/SourceList'
 import IconAll from 'src/images/All.svg'
 import IconAddSource from 'src/images/AddSource.svg'
 import FeedList from 'src/containers/organisms/FeedList'
 import Header, { HeaderNavigation } from 'src/components/molecules/Header'
+import { fetchFeeds } from '../../actions/feedActions'
 
 const FeedsPage: FC = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const asyncFunc = () => {
+      dispatch(fetchFeeds(1))
+    }
+    asyncFunc()
+  }, [])
+
   const [currentNavigation, setCurrentNavigation] = useState(
     HeaderNavigation.home
   )
