@@ -1,19 +1,25 @@
-import React from 'react'
-import HomeLogo from '../../images/Home.svg'
+import React, { FC } from 'react'
+import HomeIcon from 'src/images/Home.svg'
+import HomeInactiveIcon from 'src/images/HomeInactive.svg'
 
-const button: React.CSSProperties = {
-  background: 'transparent',
-  border: 0,
+type Props = {
+  isActive: boolean
+  onClick(): void
 }
 
-const HomeIcon = () => {
-  return (
-    <div style={{ position: 'absolute', top: 10 }}>
-      <img src={HomeLogo} alt="homelogo" />
-      <button type="button" style={button}>
-        Home
-      </button>
+const Home: FC<Props> = ({ isActive, onClick }) => (
+  <div
+    className={isActive ? 'navigation navigation--active' : 'navigation'}
+    onClick={onClick}
+    onKeyDown={onClick}
+    role="link"
+    tabIndex={0}
+  >
+    <img src={isActive ? HomeIcon : HomeInactiveIcon} alt="home-icon" />
+    <div role="link">
+      <span>Home</span>
     </div>
-  )
-}
-export default HomeIcon
+  </div>
+)
+
+export default Home

@@ -1,30 +1,43 @@
-import React from 'react'
-import { Container, Row } from 'react-grid-system'
-import ExploreLogo from '../atoms/Explore'
-import HomeLogo from '../atoms/Home'
-import SignUpLogo from '../atoms/SignUp'
-import SignInLogo from '../atoms/SignIn'
-import RssIcon from '../atoms/RssIcon'
+import React, { FC } from 'react'
+import HeaderRightMenu from 'src/components/molecules/HeaderRightMenu'
+import Explore from 'src/components/atoms/Explore'
+import Home from 'src/components/atoms/Home'
+import RssIcon from 'src/images/RssIcon.svg'
 
-const Header = () => {
-  return (
-    <Container fluid>
-      <Row justify="between">
-        <div>
-          <RssIcon />
-        </div>
-        <div>
-          <HomeLogo />
-        </div>
-        <div>
-          <ExploreLogo />
-        </div>
-        <div>
-          <SignInLogo />
-          <SignUpLogo />
-        </div>
-      </Row>
-    </Container>
-  )
+export enum HeaderNavigation {
+  home = 'home',
+  explore = 'explore',
 }
+
+type Props = {
+  email: string | null
+  currentNavigation: HeaderNavigation
+  OnChangeNavigation(navigation: HeaderNavigation): void
+}
+
+const Header: FC<Props> = ({
+  email,
+  currentNavigation,
+  OnChangeNavigation,
+}) => (
+  <div className="header">
+    <div>
+      <img src={RssIcon} alt="RssIcon" />
+    </div>
+    <div className="header__navigation">
+      <Home
+        isActive={currentNavigation === HeaderNavigation.home}
+        onClick={() => OnChangeNavigation(HeaderNavigation.home)}
+      />
+      <Explore
+        isActive={currentNavigation === HeaderNavigation.explore}
+        onClick={() => OnChangeNavigation(HeaderNavigation.explore)}
+      />
+    </div>
+    <div>
+      <HeaderRightMenu email={email} />
+    </div>
+  </div>
+)
+
 export default Header
