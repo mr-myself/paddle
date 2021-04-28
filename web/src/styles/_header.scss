@@ -16,12 +16,13 @@ $main-blue: #1a3b60;
     display: flex;
     align-items: center;
     font-weight: bold;
-    color: $main-blue;
+    color: #83a0c1;
     padding: 25px;
     border-bottom: 4px solid transparent;
     cursor: pointer;
 
     &--active {
+      color: $main-blue;
       border-bottom: 4px solid #0f3f88;
     }
 

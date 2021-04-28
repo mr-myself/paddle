@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import ExploreIcon from 'src/images/Explore.svg'
+import ExploreInactiveIcon from 'src/images/ExploreInactive.svg'
 
 type Props = {
   isActive: boolean
@@ -14,7 +15,10 @@ const Explore: FC<Props> = ({ isActive, onClick }) => (
     role="link"
     tabIndex={0}
   >
-    <img src={ExploreIcon} alt="explore" />
+    <img
+      src={isActive ? ExploreIcon : ExploreInactiveIcon}
+      alt="explore-icon"
+    />
     <div role="link">
       <span>Explore</span>
     </div>

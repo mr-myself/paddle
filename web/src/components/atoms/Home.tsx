@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import HomeLogo from 'src/images/Home.svg'
+import HomeIcon from 'src/images/Home.svg'
+import HomeInactiveIcon from 'src/images/HomeInactive.svg'
 
 type Props = {
   isActive: boolean
@@ -14,7 +15,7 @@ const Home: FC<Props> = ({ isActive, onClick }) => (
     role="link"
     tabIndex={0}
   >
-    <img src={HomeLogo} alt="homelogo" />
+    <img src={isActive ? HomeIcon : HomeInactiveIcon} alt="home-icon" />
     <div role="link">
       <span>Home</span>
     </div>
