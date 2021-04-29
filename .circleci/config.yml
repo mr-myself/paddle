@@ -131,7 +131,7 @@ jobs:
             EOF
   web-deploy:
     docker:
-      - image: cimg/node:14.16.1
+      - image: cimg/python:3.7.10-node
     working_directory: ~/repo
     steps:
       - checkout
