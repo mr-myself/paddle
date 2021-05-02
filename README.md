@@ -30,6 +30,33 @@ $ docker-compose up
 $ docker-compose stop
 ```
 
+## Setup Database
+
+**Preparation**
+
+```
+$ make dc-preparation
+```
+
+**Run migrations**
+
+```
+$ make dc-migrate
+```
+
+**Create a migration file**
+
+```
+# Run this at the root directory, please.
+$ docker-compose run go migrate create -ext sql -dir db/migrations xxx(migration title)
+```
+
+**Affect a new schema after running migration**
+
+```
+$ make dc-generate-orm
+```
+
 # Branch Model
 
 Github Flow

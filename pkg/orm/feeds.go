@@ -31,6 +31,7 @@ type Feed struct {
 	Contents  null.String `boil:"contents" json:"contents,omitempty" toml:"contents" yaml:"contents,omitempty"`
 	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
 	UpdatedAt time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	ImageURL  null.String `boil:"image_url" json:"image_url,omitempty" toml:"image_url" yaml:"image_url,omitempty"`
 
 	R *feedR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L feedL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -44,6 +45,7 @@ var FeedColumns = struct {
 	Contents  string
 	CreatedAt string
 	UpdatedAt string
+	ImageURL  string
 }{
 	ID:        "id",
 	SourceID:  "source_id",
@@ -52,6 +54,7 @@ var FeedColumns = struct {
 	Contents:  "contents",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",
+	ImageURL:  "image_url",
 }
 
 // Generated where
@@ -154,6 +157,7 @@ var FeedWhere = struct {
 	Contents  whereHelpernull_String
 	CreatedAt whereHelpertime_Time
 	UpdatedAt whereHelpertime_Time
+	ImageURL  whereHelpernull_String
 }{
 	ID:        whereHelperint64{field: "`feeds`.`id`"},
 	SourceID:  whereHelperint64{field: "`feeds`.`source_id`"},
@@ -162,6 +166,7 @@ var FeedWhere = struct {
 	Contents:  whereHelpernull_String{field: "`feeds`.`contents`"},
 	CreatedAt: whereHelpertime_Time{field: "`feeds`.`created_at`"},
 	UpdatedAt: whereHelpertime_Time{field: "`feeds`.`updated_at`"},
+	ImageURL:  whereHelpernull_String{field: "`feeds`.`image_url`"},
 }
 
 // FeedRels is where relationship names are stored.
@@ -181,8 +186,8 @@ func (*feedR) NewStruct() *feedR {
 type feedL struct{}
 
 var (
-	feedAllColumns            = []string{"id", "source_id", "url", "title", "contents", "created_at", "updated_at"}
-	feedColumnsWithoutDefault = []string{"source_id", "url", "title", "contents", "created_at", "updated_at"}
+	feedAllColumns            = []string{"id", "source_id", "url", "title", "contents", "created_at", "updated_at", "image_url"}
+	feedColumnsWithoutDefault = []string{"source_id", "url", "title", "contents", "created_at", "updated_at", "image_url"}
 	feedColumnsWithDefault    = []string{"id"}
 	feedPrimaryKeyColumns     = []string{"id"}
 )
