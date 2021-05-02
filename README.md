@@ -59,3 +59,6 @@ You have to set EC2 connection key, GitHub deployment key, and the variables bel
 | USERNAME                        | EC2 Username                                                              |
 | HOST                            | EC2 Hostname or IP Address                                                |
 | SSH_PORT                        | EC2 SSH Port                                                              |
+| AWS_ACCESS_KEY_ID               | AWS Acceess Key                                                           |
+| AWS_SECRET_ACCESS_KEY           | AWS Secret Access Key                                                     |
+| AWS_REGION                      | AWS Region                                                                |
