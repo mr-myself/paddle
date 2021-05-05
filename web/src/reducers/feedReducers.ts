@@ -1,5 +1,5 @@
-import { IFeed, FeedActionTypes } from '../type'
-import { FeedActions } from '../actions/feedActions'
+import { IFeed, FeedActionTypes } from 'src/type'
+import { FeedActions } from 'src/actions/feedActions'
 
 export interface IFeedState {
   feeds: IFeed[]
