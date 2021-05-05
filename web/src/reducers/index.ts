@@ -5,7 +5,7 @@ import source from './sourceReducers'
 
 const reducers = combineReducers({
   feed,
-  source
+  source,
 })
 
 export default reducers
