@@ -4,7 +4,7 @@ import { ISource, IFeed } from 'src/type'
 
 // hasVisited will be decided by checking interests table.
 type Props = {
-  source: ISource
+  source?: ISource
   feed: IFeed
   hasVisited: boolean
 }
@@ -35,7 +35,7 @@ const Feed: FC<Props> = ({ source, feed, hasVisited }) => {
       <Col md={8}>
         <div>
           <div className="feed__title">{feed.title}</div>
-          <div className="feed__sourceTitle">{source.title}</div>
+          {source && <div className="feed__sourceTitle">{source.title}</div>}
           <div className="feed__content">{feed.contents}</div>
         </div>
       </Col>

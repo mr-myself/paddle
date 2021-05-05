@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import { IFeed, ISource } from 'src/type'
 import Feed from 'src/containers/organisms/Feed'
 import { useSelector } from 'react-redux'
@@ -11,7 +11,7 @@ const FeedList: FC = () => {
     (state: { feed: { feeds: IFeed[] } }) => state.feed.feeds
   )
   const findSource = (sourceId: number) =>
-    sources.find((s) => s.id === sourceId)!
+    sources.find((s) => s.id === sourceId)
 
   return (
     <div className="feedList">
