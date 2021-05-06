@@ -6,13 +6,14 @@ import IconAll from 'src/images/All.svg'
 import IconAddSource from 'src/images/AddSource.svg'
 import FeedList from 'src/containers/organisms/FeedList'
 import Header, { HeaderNavigation } from 'src/components/molecules/Header'
-import { fetchFeeds } from '../../actions/feedActions'
+import { fetchSources } from 'src/actions/sourceActions'
 
 const FeedsPage: FC = () => {
   const dispatch = useDispatch()
+
   useEffect(() => {
     const asyncFunc = () => {
-      dispatch(fetchFeeds(1))
+      dispatch(fetchSources())
     }
     asyncFunc()
   }, [])
@@ -59,7 +60,7 @@ const FeedsPage: FC = () => {
         </Col>
         <Col md={8} lg={9}>
           <Container>
-            <FeedList />
+            {currentNavigation === HeaderNavigation.home && <FeedList />}
           </Container>
         </Col>
       </Row>
