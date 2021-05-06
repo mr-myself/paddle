@@ -10,7 +10,7 @@ dc-generate-orm: dc-preparation
 	docker-compose run go sqlboiler --wipe mysql
 
 dc-migrate:
-	docker-compose run go migrate - database mysql://apuser:password@tcp\(db:3306\)/paddle -source file:///home/app/db/migrations up
+	docker-compose run go migrate -database mysql://apuser:password@tcp\(db:3306\)/paddle -source file:///home/app/db/migrations up
 
 help:
 	@perl -n -e 'printf "\033[36m%-30s\033[0m %s\n", do { (my $$tn = $$1) =~ s|\\||g; $$tn }, $$2 if $$_ =~ /^(\w.*?):.*? ## (.*)/' $(MAKEFILE_LIST) |sort
