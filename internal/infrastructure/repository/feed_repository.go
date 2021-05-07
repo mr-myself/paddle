@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	"github.com/mmcdole/gofeed"
 	"github.com/ChubachiPT21/paddle/internal/infrastructure/database"
 	"github.com/ChubachiPT21/paddle/internal/models"
 	"github.com/ChubachiPT21/paddle/pkg/orm"
+	"github.com/mmcdole/gofeed"
 	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	. "github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -32,6 +32,7 @@ func (repo *feedRepository) Create(sourceID int64, item *gofeed.Item) (*orm.Feed
 		URL:      item.Link,
 		Title:    item.Title,
 		Contents: null.StringFrom(item.Description),
+		ImageURL: null.StringFrom("https://dummyimage.com/600x400/000/fff"), // TODO:
 	}
 	err := feed.Insert(context.Background(), database.DBCon, boil.Infer())
 

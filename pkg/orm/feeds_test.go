@@ -568,7 +568,7 @@ func testFeedsSelect(t *testing.T) {
 }
 
 var (
-	feedDBTypes = map[string]string{`ID`: `bigint`, `SourceID`: `bigint`, `URL`: `varchar`, `Title`: `varchar`, `Contents`: `text`, `CreatedAt`: `datetime`, `UpdatedAt`: `datetime`}
+	feedDBTypes = map[string]string{`ID`: `bigint`, `SourceID`: `bigint`, `URL`: `varchar`, `Title`: `varchar`, `Contents`: `text`, `CreatedAt`: `datetime`, `UpdatedAt`: `datetime`, `ImageURL`: `text`}
 	_           = bytes.MinRead
 )
 
