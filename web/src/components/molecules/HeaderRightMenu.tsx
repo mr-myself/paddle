@@ -9,10 +9,10 @@ const HeaderRightMenu: FC<Props> = ({ email }) => (
     {email && <span>Welcome! {email}</span>}
     {!email && (
       <>
-        <a href="/" className="rightMenu__item">
+        <a href="/signin" className="rightMenu__item">
           Sign In
         </a>
-        <a href="/" className="rightMenu__item rightMenu__item--border">
+        <a href="/signup" className="rightMenu__item rightMenu__item--border">
           Sign Up
         </a>
       </>
