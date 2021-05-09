@@ -69,9 +69,9 @@ func (h *getFeedsHandler) preview(c *gin.Context) {
 
 // curl -X POST -H "Content-Type: application/json" -d '{"url":"https://news.yahoo.co.jp/articles/0d297aa79e0e125b64c4ee6be93a591009d80df6"}' localhost:10330/v1/preview/ogpimg
 func (h *getOgpHandler) getOgp(c *gin.Context) {
-	var FetchUrl previewRequest
-	c.BindJSON(&FetchUrl)
-	ogpFetch, err := opengraph.Fetch(FetchUrl.Url)
+	var fetchUrl previewRequest
+	c.BindJSON(&fetchUrl)
+	ogpFetch, err := opengraph.Fetch(fetchUrl.Url)
 
 	if err != nil {
 		fmt.Println(err)
