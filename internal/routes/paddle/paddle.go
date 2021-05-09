@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/mmcdole/gofeed"
+	"github.com/otiai10/opengraph"
 
 	"github.com/ChubachiPT21/paddle/internal/infrastructure/repository"
 	"github.com/ChubachiPT21/paddle/internal/models"
@@ -18,6 +19,9 @@ import (
 
 type getFeedsHandler struct {
 	repo models.FeedRepository
+}
+
+type getOgpHandler struct {
 }
 
 type getSourcesHandler struct {
@@ -60,6 +64,20 @@ func (h *getFeedsHandler) preview(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, nil)
 	} else {
 		c.JSON(http.StatusOK, feed)
+	}
+}
+
+// curl -X POST -H "Content-Type: application/json" -d '{"url":"https://news.yahoo.co.jp/articles/0d297aa79e0e125b64c4ee6be93a591009d80df6"}' localhost:10330/v1/preview/ogpimg
+func (h *getOgpHandler) getOgp(c *gin.Context) {
+	var FetchUrl previewRequest
+	c.BindJSON(&FetchUrl)
+	ogpFetch, err := opengraph.Fetch(FetchUrl.Url)
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
+	} else {
+		c.JSON(http.StatusOK, ogpFetch.Image[0].URL)
 	}
 }
 
@@ -153,6 +171,19 @@ func GetPreview() routes.Routes {
 			Path:    "/preview",
 			Method:  http.MethodPost,
 			Handler: handler.preview,
+		},
+	}
+}
+
+// GetOgp fetches OGP image's url from url
+func GetOgpimg() routes.Routes {
+	handler := new(getOgpHandler)
+
+	return routes.Routes{
+		{
+			Path:    "/preview/ogpimg",
+			Method:  http.MethodPost,
+			Handler: handler.getOgp,
 		},
 	}
 }
