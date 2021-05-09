@@ -1,10 +1,9 @@
-$font-gray: #696F79;
-$primary-blue: #0F3F88;
 .sign {
-    padding:80px;
-    height: 100%;
-
-&__content {
+  padding:80px;
+  height: 100%;
+  background-color: #f5f6f7;
+ 
+  &__content {
     height: 400px;
     width: 300px;
     background-color: #ffffff;
@@ -12,58 +11,29 @@ $primary-blue: #0F3F88;
     margin: 0px auto;
     border-radius: 10px;
     box-shadow: 4px 4px 10px 2px #00000026;
-
-}
-&__title {
+  }
+  &__title {
     display: flex;
     font-size: 24px;
-    color: $primary-blue;
+    color: $btn-primary-color;
     margin-top: 20px;
     margin-bottom: 46px;
-}
+  }
 
-&__subTitle {
-    display: block;
-    float: left;
-    margin-top:14px;
-    font-size: 14px;
-    color: $font-gray;
-}
-
-&__forgetPw {
+  &__forgetPw {
     float: right;
     font-size: 12px;
     color:#FDC064;
+  }
 
-
-}
-
-&__input {
+  &__input {
     margin-top: 14px;
     margin-bottom: 14px;
-    padding: 0 10px;
-    width: 300px;
-    height: 40px;
-    line-height: 32px;
-    border: 1px solid $primary-blue;
-    box-sizing: border-box;
-    border-radius: 6px;
-}
+  }
 
-&__button {
+  &__button {
     margin-top:20px;
+    margin-bottom: 20px;
     width: 300px;
-    padding: 9px 18px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    color: #ffffff;
-    cursor: pointer;
-    background: $primary-blue;
-    outline: none; 
-
-}
-
-
+  }
 }

@@ -2,10 +2,11 @@ import React, { FC } from 'react'
 
 type Props = {
   buttonName: string
+  onClick(): void
 }
 
-const PrimaryButton: FC<Props> = ({ buttonName }) => (
-  <button className="sign__button" type="button">
+const PrimaryButton: FC<Props> = ({ buttonName, onClick }) => (
+  <button onClick={onClick} className="prmary-btn" type="button">
     {buttonName}
   </button>
 )

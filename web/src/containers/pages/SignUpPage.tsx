@@ -20,7 +20,7 @@ const LogInPage: FC = () => {
           OnChangeNavigation={switchHeaderNavigation}
         />
       </div>
-      <Col style={{ height: '100%', backgroundColor: '#f5f6f7' }}>
+      <Col>
         <div>
           <SignUp />
         </div>
