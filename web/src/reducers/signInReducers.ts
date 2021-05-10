@@ -3,12 +3,12 @@ import { SignInAction } from 'src/actions/signInActions'
 
 export interface IUserState {
   error: boolean
-  signStatus: boolean
+  isSignedIn: boolean
 }
 
 const initialState: IUserState = {
   error: false,
-  signStatus: false,
+  isSignedIn: false,
 }
 
 const reducer = (
@@ -19,18 +19,18 @@ const reducer = (
     case SignActionTypes.SIGN_IN_START:
       return {
         ...state,
-        signStatus: false,
+        isSignedIn: false,
       }
     case SignActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        signStatus: true,
+        isSignedIn: true,
       }
     case SignActionTypes.SIGN_IN_ERROR:
       return {
         ...state,
         error: true,
-        signStatus: false,
+        isSignedIn: false,
       }
     default: {
       return state
