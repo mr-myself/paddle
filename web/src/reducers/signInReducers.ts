@@ -1,14 +1,17 @@
-import { SignActionTypes } from 'src/type'
+import { SignActionTypes, IUser } from 'src/type'
 import { SignInAction } from 'src/actions/signInActions'
 
 export interface IUserState {
   error: boolean
-  isSignedIn: boolean
+  user: IUser
 }
 
 const initialState: IUserState = {
   error: false,
-  isSignedIn: false,
+  user: {
+    email: '',
+    password: '',
+  },
 }
 
 const reducer = (
@@ -19,18 +22,16 @@ const reducer = (
     case SignActionTypes.SIGN_IN_START:
       return {
         ...state,
-        isSignedIn: false,
       }
     case SignActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        isSignedIn: true,
+        user: action.payload.user,
       }
     case SignActionTypes.SIGN_IN_ERROR:
       return {
         ...state,
         error: true,
-        isSignedIn: false,
       }
     default: {
       return state

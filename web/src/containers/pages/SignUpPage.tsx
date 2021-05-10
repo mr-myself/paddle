@@ -12,7 +12,7 @@ const LogInPage: FC = () => {
     setCurrentNavigation(navigation)
   }
   return (
-    <div className="fullHeight">
+    <div>
       <div>
         <Header
           email=""
