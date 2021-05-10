@@ -59,6 +59,15 @@ func (h *getFeedsHandler) preview(c *gin.Context) {
 	c.BindJSON(&previewRequest)
 	feed, err := fp.ParseURL(previewRequest.Url)
 
+	// 嵩下が書いて動かないってなってるやつ　ここから
+	ogpUrl := feed.Items
+
+	for _, ogp := range ogpUrl {
+		ogpFetch, _ := opengraph.Fetch(ogp.Link)
+		c.JSON(http.StatusOK, ogpFetch.Image[0].URL)
+	}
+	// ここまで
+
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
@@ -67,6 +76,7 @@ func (h *getFeedsHandler) preview(c *gin.Context) {
 	}
 }
 
+//　previewのほうがうまくいったら消す　ここから
 // curl -X POST -H "Content-Type: application/json" -d '{"url":"https://news.yahoo.co.jp/articles/0d297aa79e0e125b64c4ee6be93a591009d80df6"}' localhost:10330/v1/preview/ogpimg
 func (h *getOgpHandler) getOgp(c *gin.Context) {
 	var fetchUrl previewRequest
@@ -80,6 +90,8 @@ func (h *getOgpHandler) getOgp(c *gin.Context) {
 		c.JSON(http.StatusOK, ogpFetch.Image[0].URL)
 	}
 }
+
+// ここまで
 
 func (h *getSourcesHandler) handle(c *gin.Context) {
 	sourceRepo := repository.NewSourceRepository()
@@ -175,6 +187,7 @@ func GetPreview() routes.Routes {
 	}
 }
 
+//　previewのほうがうまくいったら消す　ここから
 // GetOgp fetches OGP image's url from url
 func GetOgpimg() routes.Routes {
 	handler := new(getOgpHandler)
@@ -187,6 +200,8 @@ func GetOgpimg() routes.Routes {
 		},
 	}
 }
+
+// ここまで
 
 // GetSources shows all sources
 func GetSources() routes.Routes {
