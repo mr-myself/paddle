@@ -3,7 +3,7 @@ import { Col } from 'react-grid-system'
 import Header, { HeaderNavigation } from 'src/components/molecules/Header'
 import SignUp from 'src/containers/organisms/SignUp'
 
-const LogInPage: FC = () => {
+const SignUpPage: FC = () => {
   const [currentNavigation, setCurrentNavigation] = useState(
     HeaderNavigation.headerRightMenu
   )
@@ -28,4 +28,4 @@ const LogInPage: FC = () => {
     </div>
   )
 }
-export default LogInPage
+export default SignUpPage

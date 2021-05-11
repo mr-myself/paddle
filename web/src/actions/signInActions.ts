@@ -2,36 +2,36 @@ import { Action, Dispatch } from 'redux'
 import { SignActionTypes, IUser } from '../type'
 import signInRequest from '../api/signInRequest'
 
-interface IsignAction extends Action {
+interface ISignAction extends Action {
   type: SignActionTypes.SIGN_IN_START
 }
 
-interface IsignSuccess extends Action {
+interface ISignSuccess extends Action {
   type: SignActionTypes.SIGN_IN_SUCCESS
   payload: {
     user: IUser
   }
 }
 
-interface IsignError extends Action {
+interface ISignError extends Action {
   type: SignActionTypes.SIGN_IN_ERROR
   payload: {
     error: Error
   }
 }
 
-const signStart = (): IsignAction => ({
+const signStart = (): ISignAction => ({
   type: SignActionTypes.SIGN_IN_START,
 })
 
-const signSuccess = (user: IUser): IsignSuccess => ({
+const signSuccess = (user: IUser): ISignSuccess => ({
   type: SignActionTypes.SIGN_IN_SUCCESS,
   payload: {
     user,
   },
 })
 
-const signError = (error: Error): IsignError => ({
+const signError = (error: Error): ISignError => ({
   type: SignActionTypes.SIGN_IN_ERROR,
   payload: {
     error,
@@ -52,4 +52,4 @@ export const signIn = (user: IUser) => {
   }
 }
 
-export type SignInAction = IsignAction | IsignSuccess | IsignError
+export type SignInAction = ISignAction | ISignSuccess | ISignError

@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-interface IInputProps {
+type Props = {
   title: string
   type: string
   placeholder: string
   onChange(value: any): void
 }
 
-const Input = ({ title, type, placeholder, onChange }: IInputProps) => {
+const Input: FC<Props> = ({ title, type, placeholder, onChange }) => {
   return (
     <div>
       <div>
