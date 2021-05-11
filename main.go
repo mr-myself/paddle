@@ -42,9 +42,5 @@ func main() {
 		v1,
 		paddle.CreateInterest()...,
 	)
-	routes.AddRoutes(
-		v1,
-		paddle.GetOgpimg()...,
-	)
 	r.Run(":10330") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

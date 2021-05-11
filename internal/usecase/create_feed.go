@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mmcdole/gofeed"
 	"github.com/ChubachiPT21/paddle/internal/infrastructure/repository"
+	"github.com/mmcdole/gofeed"
+	"github.com/otiai10/opengraph"
 )
 
 // CreateFeed is an usecase to create feeds from the source
@@ -41,10 +42,24 @@ func CreateFeed(sourceID int64) error {
 
 		if latestDateTime.IsZero() || latestDateTime.Before(itemDateTime) {
 			latestDateTime = itemDateTime
-			_, err := feedRepo.Create(sourceID, item)
+			ogp, err := opengraph.Fetch(item.Link)
 			if err != nil {
 				fmt.Println(err)
 				continue
+			}
+
+			if len(ogp.Image) > 0 {
+				_, err = feedRepo.Create(sourceID, item, ogp.Image[0].URL)
+				if err != nil {
+					fmt.Println(err)
+					continue
+				}
+			} else {
+				_, err = feedRepo.Create(sourceID, item, "")
+				if err != nil {
+					fmt.Println(err)
+					continue
+				}
 			}
 		}
 	}

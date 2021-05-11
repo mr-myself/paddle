@@ -21,9 +21,6 @@ type getFeedsHandler struct {
 	repo models.FeedRepository
 }
 
-type getOgpHandler struct {
-}
-
 type getSourcesHandler struct {
 }
 
@@ -52,46 +49,39 @@ func (h *getFeedsHandler) handle(c *gin.Context) {
 	}
 }
 
-// curl -X POST -H "Content-Type: application/json" -d '{"url":"https://b.hatena.ne.jp/hotentry/it.rss"}' localhost:10330/v1/preview
 func (h *getFeedsHandler) preview(c *gin.Context) {
 	fp := gofeed.NewParser()
 	var previewRequest previewRequest
 	c.BindJSON(&previewRequest)
 	feed, err := fp.ParseURL(previewRequest.Url)
 
-	// 嵩下が書いて動かないってなってるやつ　ここから
-	ogpUrl := feed.Items
-
-	for _, ogp := range ogpUrl {
-		ogpFetch, _ := opengraph.Fetch(ogp.Link)
-		c.JSON(http.StatusOK, ogpFetch.Image[0].URL)
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
 	}
-	// ここまで
+
+	var ogpURLs []string
+	for _, item := range feed.Items {
+		ogp, err := opengraph.Fetch(item.Link)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+
+		if len(ogp.Image) > 0 {
+			ogpURLs = append(ogpURLs, ogp.Image[0].URL)
+		} else {
+			fmt.Printf("%v", ogp.Image)
+		}
+	}
 
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
 	} else {
-		c.JSON(http.StatusOK, feed)
+		c.JSON(http.StatusOK, ogpURLs)
 	}
 }
-
-//　previewのほうがうまくいったら消す　ここから
-// curl -X POST -H "Content-Type: application/json" -d '{"url":"https://news.yahoo.co.jp/articles/0d297aa79e0e125b64c4ee6be93a591009d80df6"}' localhost:10330/v1/preview/ogpimg
-func (h *getOgpHandler) getOgp(c *gin.Context) {
-	var fetchUrl previewRequest
-	c.BindJSON(&fetchUrl)
-	ogpFetch, err := opengraph.Fetch(fetchUrl.Url)
-
-	if err != nil {
-		fmt.Println(err)
-		c.JSON(http.StatusInternalServerError, nil)
-	} else {
-		c.JSON(http.StatusOK, ogpFetch.Image[0].URL)
-	}
-}
-
-// ここまで
 
 func (h *getSourcesHandler) handle(c *gin.Context) {
 	sourceRepo := repository.NewSourceRepository()
@@ -186,22 +176,6 @@ func GetPreview() routes.Routes {
 		},
 	}
 }
-
-//　previewのほうがうまくいったら消す　ここから
-// GetOgp fetches OGP image's url from url
-func GetOgpimg() routes.Routes {
-	handler := new(getOgpHandler)
-
-	return routes.Routes{
-		{
-			Path:    "/preview/ogpimg",
-			Method:  http.MethodPost,
-			Handler: handler.getOgp,
-		},
-	}
-}
-
-// ここまで
 
 // GetSources shows all sources
 func GetSources() routes.Routes {
