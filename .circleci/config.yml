@@ -40,6 +40,20 @@ jobs:
           command: |
             cd web
             yarn lint
+  frontend-test:
+    docker:
+      - image: cimg/node:14.16.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-node-{{ checksum "./web/yarn.lock" }}
+      - run: cd web && yarn install
+      - save_cache:
+          key: v1-node-{{ checksum "./web/yarn.lock" }}
+          paths:
+            - ./web/node_modules
+      - run: cd web && yarn test
   test:
     machine: true
     working_directory: ~/repo
