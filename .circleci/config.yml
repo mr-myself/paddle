@@ -184,6 +184,13 @@ workflows:
             branches:
               ignore:
                 - main
+      - frontend-test:
+          requires:
+            - lint
+          filters:
+            branches:
+              ignore:
+                - main
   test-and-deploy:
     jobs:
       - test:
