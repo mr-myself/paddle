@@ -24,11 +24,11 @@ import (
 // Source is an object representing the database table.
 type Source struct {
 	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
-	UserID    int64     `boil:"user_id" json:"user_id" toml:"user_id" yaml:"user_id"`
+	UserID    int64     `boil:"user_id" json:"userId" toml:"userId" yaml:"userId"`
 	URL       string    `boil:"url" json:"url" toml:"url" yaml:"url"`
 	Title     string    `boil:"title" json:"title" toml:"title" yaml:"title"`
-	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	CreatedAt time.Time `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
 
 	R *sourceR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L sourceL  `boil:"-" json:"-" toml:"-" yaml:"-"`
