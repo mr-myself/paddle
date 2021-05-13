@@ -12,7 +12,7 @@ const FeedList: FC = () => {
   )
   const findSource = (sourceId: number) =>
     sources.find((s) => s.id === sourceId)
-  console.log(feeds)
+
   return (
     <div className="feedList">
       <div className="feedList__title">
