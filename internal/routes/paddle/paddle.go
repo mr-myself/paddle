@@ -21,6 +21,7 @@ type getFeedsHandler struct {
 }
 
 type getSourcesHandler struct {
+	repo models.SourceRepository
 }
 
 type createSourceHandler struct {
@@ -64,8 +65,7 @@ func (h *getFeedsHandler) preview(c *gin.Context) {
 }
 
 func (h *getSourcesHandler) handle(c *gin.Context) {
-	sourceRepo := repository.NewSourceRepository()
-	sources, err := sourceRepo.All()
+	sources, err := h.repo.All()
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
@@ -158,8 +158,8 @@ func GetPreview() routes.Routes {
 }
 
 // GetSources shows all sources
-func GetSources() routes.Routes {
-	handler := new(getSourcesHandler)
+func GetSources(repo models.SourceRepository) routes.Routes {
+	handler := getSourcesHandler{repo}
 
 	return routes.Routes{
 		{
