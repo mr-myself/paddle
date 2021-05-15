@@ -24,10 +24,10 @@ import (
 // Update is an object representing the database table.
 type Update struct {
 	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
-	SourceID  int64     `boil:"source_id" json:"source_id" toml:"source_id" yaml:"source_id"`
-	FetchedAt time.Time `boil:"fetched_at" json:"fetched_at" toml:"fetched_at" yaml:"fetched_at"`
-	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	SourceID  int64     `boil:"source_id" json:"sourceId" toml:"sourceId" yaml:"sourceId"`
+	FetchedAt time.Time `boil:"fetched_at" json:"fetchedAt" toml:"fetchedAt" yaml:"fetchedAt"`
+	CreatedAt time.Time `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
 
 	R *updateR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L updateL  `boil:"-" json:"-" toml:"-" yaml:"-"`

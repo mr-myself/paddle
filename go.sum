@@ -214,6 +214,8 @@ github.com/volatiletech/sqlboiler v3.7.1+incompatible h1:dm9/NjDskQVwAarmpeZ2UqL
 github.com/volatiletech/sqlboiler v3.7.1+incompatible/go.mod h1:jLfDkkHWPbS2cWRLkyC20vQWaIQsASEY7gM7zSo11Yw=
 github.com/volatiletech/sqlboiler/v4 v4.4.0 h1:aSlvHidRBuxHHQZNX3ZLGgzNVPVPzWqsC3lhcLbV/b0=
 github.com/volatiletech/sqlboiler/v4 v4.4.0/go.mod h1:h4RBAO6QbwMP3ezGmtfGljRms7S27cFIgF3rKgPKstE=
+github.com/volatiletech/sqlboiler/v4 v4.5.0 h1:oJ3YXEvv0c48S9W/3TuPLxJxefIkewpub2qZioXXlUY=
+github.com/volatiletech/sqlboiler/v4 v4.5.0/go.mod h1:tQgF5zxwqrjR6Wydc5rRylI6puDOO1WvBC70/5up+Hg=
 github.com/volatiletech/strmangle v0.0.1 h1:UKQoHmY6be/R3tSvD2nQYrH41k43OJkidwEiC74KIzk=
 github.com/volatiletech/strmangle v0.0.1/go.mod h1:F6RA6IkB5vq0yTG4GQ0UsbbRcl3ni9P76i+JrTBKFFg=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
