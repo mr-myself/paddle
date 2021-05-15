@@ -6,7 +6,8 @@ import './styles/App.scss'
 import reportWebVitals from './reportWebVitals'
 
 import FeedsPage from './containers/pages/FeedsPage'
-
+import SignInPage from './containers/pages/SignInPage'
+import SignUpPage from './containers/pages/SignUpPage'
 import store from './store'
 
 const configuredStore = store
@@ -17,6 +18,8 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route exact path="/" component={FeedsPage} />
+          <Route exact path="/signin" component={SignInPage} />
+          <Route exact path="/signup" component={SignUpPage} />
         </Switch>
       </Router>
     </React.StrictMode>

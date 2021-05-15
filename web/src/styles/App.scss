@@ -3,6 +3,9 @@
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=Basic&family=Open+Sans:ital@0;1&display=swap');
 
+$font-light-color: #696F79;
+$btn-primary-color: #0F3F88;
+
 html,
 body {
   height: 100%;
@@ -18,9 +21,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.prmary-btn{
+  width: 100%;
+  padding: 9px 18px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  background: $btn-primary-color;
+  outline: none; 
+}
+
+.input {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  padding: 0 10px;
+  width: 300px;
+  height: 40px;
+  line-height: 32px;
+  border: 1px solid $btn-primary-color;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+.input-subTitle {
+  display: block;
+  float: left;
+  margin-top:14px;
+  font-size: 14px;
+  color: $font-light-color;
+
+}
+
 @import './sidebar';
 @import './feed';
 @import './header';
+@import './sign';
 
 .fullHeight {
   height: 100%;

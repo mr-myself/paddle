@@ -7,6 +7,7 @@ import RssIcon from 'src/images/RssIcon.svg'
 export enum HeaderNavigation {
   home = 'home',
   explore = 'explore',
+  headerRightMenu = 'headerRightMenu',
 }
 
 type Props = {
