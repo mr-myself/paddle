@@ -8,9 +8,9 @@ import (
 	reflect "reflect"
 	time "time"
 
+	orm "github.com/ChubachiPT21/paddle/pkg/orm"
 	gomock "github.com/golang/mock/gomock"
 	gofeed "github.com/mmcdole/gofeed"
-	orm "github.com/ChubachiPT21/paddle/pkg/orm"
 )
 
 // MockInterestRepository is a mock of InterestRepository interface.
@@ -89,18 +89,18 @@ func (mr *MockFeedRepositoryMockRecorder) All(sourceID interface{}) *gomock.Call
 }
 
 // Create mocks base method.
-func (m *MockFeedRepository) Create(sourceID int64, item *gofeed.Item) (*orm.Feed, error) {
+func (m *MockFeedRepository) Create(sourceID int64, item *gofeed.Item, imageURL string) (*orm.Feed, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Create", sourceID, item)
+	ret := m.ctrl.Call(m, "Create", sourceID, item, imageURL)
 	ret0, _ := ret[0].(*orm.Feed)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockFeedRepositoryMockRecorder) Create(sourceID, item interface{}) *gomock.Call {
+func (mr *MockFeedRepositoryMockRecorder) Create(sourceID, item, imageURL interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockFeedRepository)(nil).Create), sourceID, item)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockFeedRepository)(nil).Create), sourceID, item, imageURL)
 }
 
 // MockSourceRepository is a mock of SourceRepository interface.

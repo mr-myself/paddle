@@ -3,8 +3,8 @@ package models
 import (
 	"time"
 
-	"github.com/mmcdole/gofeed"
 	"github.com/ChubachiPT21/paddle/pkg/orm"
+	"github.com/mmcdole/gofeed"
 )
 
 // InterestRepository is an interface
@@ -15,7 +15,7 @@ type InterestRepository interface {
 // FeedRepository is an interface
 type FeedRepository interface {
 	All(sourceID int64) (orm.FeedSlice, error)
-	Create(sourceID int64, item *gofeed.Item) (*orm.Feed, error)
+	Create(sourceID int64, item *gofeed.Item, imageURL string) (*orm.Feed, error)
 }
 
 // SourceRepository is an interface

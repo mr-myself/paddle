@@ -26,13 +26,13 @@ func (repo *feedRepository) All(sourceID int64) (orm.FeedSlice, error) {
 	).All(context.Background(), database.DBCon)
 }
 
-func (repo *feedRepository) Create(sourceID int64, item *gofeed.Item) (*orm.Feed, error) {
+func (repo *feedRepository) Create(sourceID int64, item *gofeed.Item, imageURL string) (*orm.Feed, error) {
 	feed := orm.Feed{
 		SourceID: sourceID,
 		URL:      item.Link,
 		Title:    item.Title,
 		Contents: null.StringFrom(item.Description),
-		ImageURL: null.StringFrom("https://dummyimage.com/600x400/000/fff"), // TODO:
+		ImageURL: null.StringFrom(imageURL),
 	}
 	err := feed.Insert(context.Background(), database.DBCon, boil.Infer())
 

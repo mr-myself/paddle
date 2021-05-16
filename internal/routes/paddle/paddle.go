@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/mmcdole/gofeed"
+	"github.com/otiai10/opengraph"
 
 	"github.com/ChubachiPT21/paddle/internal/infrastructure/repository"
 	"github.com/ChubachiPT21/paddle/internal/models"
@@ -49,7 +50,6 @@ func (h *getFeedsHandler) handle(c *gin.Context) {
 	}
 }
 
-// curl -X POST -H "Content-Type: application/json" -d '{"url":"https://b.hatena.ne.jp/hotentry/it.rss"}' localhost:10330/v1/preview
 func (h *getFeedsHandler) preview(c *gin.Context) {
 	fp := gofeed.NewParser()
 	var previewRequest previewRequest
@@ -59,8 +59,28 @@ func (h *getFeedsHandler) preview(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
+	}
+
+	var ogpURLs []string
+	for _, item := range feed.Items {
+		ogp, err := opengraph.Fetch(item.Link)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+
+		if len(ogp.Image) > 0 {
+			ogpURLs = append(ogpURLs, ogp.Image[0].URL)
+		} else {
+			fmt.Printf("%v", ogp.Image)
+		}
+	}
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, nil)
 	} else {
-		c.JSON(http.StatusOK, feed)
+		c.JSON(http.StatusOK, ogpURLs)
 	}
 }
 
