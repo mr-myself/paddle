@@ -6,8 +6,9 @@ import './styles/App.scss'
 import reportWebVitals from './reportWebVitals'
 
 import FeedsPage from './containers/pages/FeedsPage'
-import SignInPage from './containers/pages/SignInPage'
-import SignUpPage from './containers/pages/SignUpPage'
+import AuthenticationPage, {
+  AuthType,
+} from './containers/pages/AuthenticationPage'
 import store from './store'
 
 const configuredStore = store
@@ -18,8 +19,20 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route exact path="/" component={FeedsPage} />
-          <Route exact path="/signin" component={SignInPage} />
-          <Route exact path="/signup" component={SignUpPage} />
+          <Route
+            exact
+            path="/signin"
+            render={(props) => (
+              <AuthenticationPage authType={AuthType.SIGNIN} {...props} />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={(props) => (
+              <AuthenticationPage authType={AuthType.SIGNUP} {...props} />
+            )}
+          />
         </Switch>
       </Router>
     </React.StrictMode>
