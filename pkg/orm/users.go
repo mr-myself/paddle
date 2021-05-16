@@ -26,8 +26,8 @@ type User struct {
 	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
 	Username  string    `boil:"username" json:"username" toml:"username" yaml:"username"`
 	Password  string    `boil:"password" json:"password" toml:"password" yaml:"password"`
-	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	CreatedAt time.Time `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
 
 	R *userR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L userL  `boil:"-" json:"-" toml:"-" yaml:"-"`

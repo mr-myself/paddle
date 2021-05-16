@@ -7,7 +7,8 @@ dc-preparation:
 dc-generate-orm: dc-preparation
 	docker-compose run go go get github.com/volatiletech/sqlboiler/v4@v4.4.0
 	docker-compose run go go get github.com/volatiletech/sqlboiler/v4/drivers/sqlboiler-mysql
-	docker-compose run go sqlboiler --wipe mysql
+	docker-compose run go sqlboiler --struct-tag-casing camel --wipe mysql
+	perl -pi -e 's/("[a-z]+[A-Z])([A-Z]+)/$1\L$2/g' ./pkg/orm/*.go
 
 dc-migrate:
 	docker-compose run go migrate -database mysql://apuser:password@tcp\(db:3306\)/paddle -source file:///home/app/db/migrations up

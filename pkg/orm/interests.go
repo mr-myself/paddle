@@ -24,9 +24,9 @@ import (
 // Interest is an object representing the database table.
 type Interest struct {
 	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
-	FeedID    int64     `boil:"feed_id" json:"feed_id" toml:"feed_id" yaml:"feed_id"`
-	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	FeedID    int64     `boil:"feed_id" json:"feedId" toml:"feedId" yaml:"feedId"`
+	CreatedAt time.Time `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
 
 	R *interestR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L interestL  `boil:"-" json:"-" toml:"-" yaml:"-"`

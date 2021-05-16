@@ -25,13 +25,13 @@ import (
 // Feed is an object representing the database table.
 type Feed struct {
 	ID        int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	SourceID  int64       `boil:"source_id" json:"source_id" toml:"source_id" yaml:"source_id"`
+	SourceID  int64       `boil:"source_id" json:"sourceId" toml:"sourceId" yaml:"sourceId"`
 	URL       string      `boil:"url" json:"url" toml:"url" yaml:"url"`
 	Title     string      `boil:"title" json:"title" toml:"title" yaml:"title"`
 	Contents  null.String `boil:"contents" json:"contents,omitempty" toml:"contents" yaml:"contents,omitempty"`
-	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
-	ImageURL  null.String `boil:"image_url" json:"image_url,omitempty" toml:"image_url" yaml:"image_url,omitempty"`
+	CreatedAt time.Time   `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
+	UpdatedAt time.Time   `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
+	ImageURL  null.String `boil:"image_url" json:"imageUrl,omitempty" toml:"imageUrl" yaml:"imageUrl,omitempty"`
 
 	R *feedR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L feedL  `boil:"-" json:"-" toml:"-" yaml:"-"`
