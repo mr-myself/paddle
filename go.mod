@@ -16,7 +16,6 @@ require (
 	github.com/mmcdole/gofeed v1.1.0
 	github.com/otiai10/opengraph v1.1.3
 	github.com/spf13/viper v1.6.3
-	github.com/stretchr/testify v1.4.0
 	github.com/volatiletech/null/v8 v8.1.2
 	github.com/volatiletech/randomize v0.0.1
 	github.com/volatiletech/sqlboiler v3.7.1+incompatible // indirect
