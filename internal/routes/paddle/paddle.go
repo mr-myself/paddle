@@ -26,6 +26,7 @@ type getSourcesHandler struct {
 }
 
 type createSourceHandler struct {
+	repo models.SourceRepository
 }
 
 type createFeedsHandler struct {
@@ -111,8 +112,7 @@ func (h *createSourceHandler) receive(c *gin.Context) {
 		return
 	}
 
-	sourceRepo := repository.NewSourceRepository()
-	err = sourceRepo.Create(&source)
+	err = h.repo.Create(&source)
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
@@ -196,8 +196,8 @@ func GetSources(repo models.SourceRepository) routes.Routes {
 }
 
 // CreateSource creates a new source
-func CreateSource() routes.Routes {
-	handler := new(createSourceHandler)
+func CreateSource(repo models.SourceRepository) routes.Routes {
+	handler := createSourceHandler{repo}
 
 	return routes.Routes{
 		{

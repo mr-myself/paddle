@@ -3,6 +3,7 @@ package paddle_test
 import (
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/ChubachiPT21/paddle/internal/models"
@@ -48,6 +49,30 @@ func TestGetSourcesHandler_handle(t *testing.T) {
 
 		w := httptest.NewRecorder()
 		c, _ := gin.CreateTestContext(w)
+
+		routeStruct.Handler(c)
+		assert.Equal(t, http.StatusOK, w.Result().StatusCode)
+	})
+}
+
+func TestCreateSourceHandler_receive(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mock := models.NewMockSourceRepository(ctrl)
+	mock.EXPECT().Create(gomock.Any()).DoAndReturn(func(_ *orm.Source) error {
+		return nil
+	})
+
+	t.Run("return 200", func(t *testing.T) {
+		routeStruct := paddle.CreateSource(mock)[0]
+
+		w := httptest.NewRecorder()
+		c, _ := gin.CreateTestContext(w)
+
+		body := strings.NewReader("") // 空でもbodyがないとtestを通らない
+		c.Request, _ = http.NewRequest("POST", "vi/sources", body)
+		c.Request.Header.Set("Content-Type", "application/x-www-form-urlencoded") // typeは適当です
 
 		routeStruct.Handler(c)
 		assert.Equal(t, http.StatusOK, w.Result().StatusCode)
