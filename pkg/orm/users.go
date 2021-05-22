@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
+	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -23,44 +24,49 @@ import (
 
 // User is an object representing the database table.
 type User struct {
-	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Username  string    `boil:"username" json:"username" toml:"username" yaml:"username"`
-	Password  string    `boil:"password" json:"password" toml:"password" yaml:"password"`
-	CreatedAt time.Time `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
-	UpdatedAt time.Time `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
+	ID                int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Email             string      `boil:"email" json:"email" toml:"email" yaml:"email"`
+	EncryptedPassword null.String `boil:"encrypted_password" json:"encryptedPassword,omitempty" toml:"encryptedPassword" yaml:"encryptedPassword,omitempty"`
+	Token             null.String `boil:"token" json:"token,omitempty" toml:"token" yaml:"token,omitempty"`
+	CreatedAt         time.Time   `boil:"created_at" json:"createdAt" toml:"createdAt" yaml:"createdAt"`
+	UpdatedAt         time.Time   `boil:"updated_at" json:"updatedAt" toml:"updatedAt" yaml:"updatedAt"`
 
 	R *userR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L userL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var UserColumns = struct {
-	ID        string
-	Username  string
-	Password  string
-	CreatedAt string
-	UpdatedAt string
+	ID                string
+	Email             string
+	EncryptedPassword string
+	Token             string
+	CreatedAt         string
+	UpdatedAt         string
 }{
-	ID:        "id",
-	Username:  "username",
-	Password:  "password",
-	CreatedAt: "created_at",
-	UpdatedAt: "updated_at",
+	ID:                "id",
+	Email:             "email",
+	EncryptedPassword: "encrypted_password",
+	Token:             "token",
+	CreatedAt:         "created_at",
+	UpdatedAt:         "updated_at",
 }
 
 // Generated where
 
 var UserWhere = struct {
-	ID        whereHelperint64
-	Username  whereHelperstring
-	Password  whereHelperstring
-	CreatedAt whereHelpertime_Time
-	UpdatedAt whereHelpertime_Time
+	ID                whereHelperint64
+	Email             whereHelperstring
+	EncryptedPassword whereHelpernull_String
+	Token             whereHelpernull_String
+	CreatedAt         whereHelpertime_Time
+	UpdatedAt         whereHelpertime_Time
 }{
-	ID:        whereHelperint64{field: "`users`.`id`"},
-	Username:  whereHelperstring{field: "`users`.`username`"},
-	Password:  whereHelperstring{field: "`users`.`password`"},
-	CreatedAt: whereHelpertime_Time{field: "`users`.`created_at`"},
-	UpdatedAt: whereHelpertime_Time{field: "`users`.`updated_at`"},
+	ID:                whereHelperint64{field: "`users`.`id`"},
+	Email:             whereHelperstring{field: "`users`.`email`"},
+	EncryptedPassword: whereHelpernull_String{field: "`users`.`encrypted_password`"},
+	Token:             whereHelpernull_String{field: "`users`.`token`"},
+	CreatedAt:         whereHelpertime_Time{field: "`users`.`created_at`"},
+	UpdatedAt:         whereHelpertime_Time{field: "`users`.`updated_at`"},
 }
 
 // UserRels is where relationship names are stored.
@@ -80,8 +86,8 @@ func (*userR) NewStruct() *userR {
 type userL struct{}
 
 var (
-	userAllColumns            = []string{"id", "username", "password", "created_at", "updated_at"}
-	userColumnsWithoutDefault = []string{"username", "password", "created_at", "updated_at"}
+	userAllColumns            = []string{"id", "email", "encrypted_password", "token", "created_at", "updated_at"}
+	userColumnsWithoutDefault = []string{"email", "encrypted_password", "token", "created_at", "updated_at"}
 	userColumnsWithDefault    = []string{"id"}
 	userPrimaryKeyColumns     = []string{"id"}
 )
@@ -645,7 +651,7 @@ func (o UserSlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor, col
 
 var mySQLUserUniqueColumns = []string{
 	"id",
-	"username",
+	"email",
 }
 
 // Upsert attempts an insert using an executor, and does an update or ignore on conflict.
