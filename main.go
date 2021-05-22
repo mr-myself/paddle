@@ -9,6 +9,13 @@ import (
 	"github.com/ChubachiPT21/paddle/internal/routes/paddle"
 	"github.com/ChubachiPT21/paddle/pkg/routes"
 	_ "github.com/go-sql-driver/mysql"
+
+
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
+	"github.com/ChubachiPT21/paddle/user"
+	"golang.org/x/crypto/bcrypt"
+
 )
 
 func main() {
@@ -42,5 +49,6 @@ func main() {
 		v1,
 		paddle.CreateInterest()...,
 	)
+
 	r.Run(":10330") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
