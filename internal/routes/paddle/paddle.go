@@ -30,6 +30,7 @@ type createSourceHandler struct {
 }
 
 type createFeedsHandler struct {
+	feed usecase.CreateFeedInterface
 }
 
 type createInterestHandler struct {
@@ -122,7 +123,7 @@ func (h *createSourceHandler) receive(c *gin.Context) {
 	c.JSON(http.StatusOK, nil)
 }
 
-func (*createFeedsHandler) receive(c *gin.Context) {
+func (h *createFeedsHandler) receive(c *gin.Context) {
 	sourceID, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
 		fmt.Println(err)
@@ -130,7 +131,7 @@ func (*createFeedsHandler) receive(c *gin.Context) {
 		return
 	}
 
-	err = usecase.CreateFeed(sourceID)
+	err = h.feed.CreateFeed(sourceID)
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, nil)
@@ -209,8 +210,8 @@ func CreateSource(repo models.SourceRepository) routes.Routes {
 }
 
 // CreateFeeds creates feeds based on the source id
-func CreateFeeds() routes.Routes {
-	handler := new(createFeedsHandler)
+func CreateFeeds(feed usecase.CreateFeedInterface) routes.Routes {
+	handler := createFeedsHandler{feed}
 
 	return routes.Routes{
 		{

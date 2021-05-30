@@ -9,8 +9,19 @@ import (
 	"github.com/otiai10/opengraph"
 )
 
+type CreateFeedInterface interface {
+	CreateFeed(sourceID int64) error
+}
+
+type CreateFeedStruct struct {
+}
+
+func NewCreateFeedStruct() CreateFeedInterface {
+	return &CreateFeedStruct{}
+}
+
 // CreateFeed is an usecase to create feeds from the source
-func CreateFeed(sourceID int64) error {
+func (CreateFeedStruct) CreateFeed(sourceID int64) error {
 	sourceRepo := repository.NewSourceRepository()
 	source, err := sourceRepo.Find(sourceID)
 

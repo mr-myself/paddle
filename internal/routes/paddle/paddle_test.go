@@ -8,6 +8,7 @@ import (
 
 	"github.com/ChubachiPT21/paddle/internal/models"
 	"github.com/ChubachiPT21/paddle/internal/routes/paddle"
+	"github.com/ChubachiPT21/paddle/internal/usecase"
 	"github.com/ChubachiPT21/paddle/pkg/orm"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/assert/v2"
@@ -73,6 +74,27 @@ func TestCreateSourceHandler_receive(t *testing.T) {
 		body := strings.NewReader("") // 空でもbodyがないとtestを通らない
 		c.Request, _ = http.NewRequest("POST", "vi/sources", body)
 		c.Request.Header.Set("Content-Type", "application/x-www-form-urlencoded") // typeは適当です
+
+		routeStruct.Handler(c)
+		assert.Equal(t, http.StatusOK, w.Result().StatusCode)
+	})
+}
+
+func TestCreateFeedsHandler_receive(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mock := usecase.NewMockCreateFeedInterface(ctrl)
+	mock.EXPECT().CreateFeed(gomock.Any()).DoAndReturn(func(_ int64) error {
+		return nil
+	})
+
+	t.Run("return 200", func(t *testing.T) {
+		routeStruct := paddle.CreateFeeds(mock)[0]
+
+		w := httptest.NewRecorder()
+		c, _ := gin.CreateTestContext(w)
+		c.Params = gin.Params{gin.Param{Key: "id", Value: "1"}}
 
 		routeStruct.Handler(c)
 		assert.Equal(t, http.StatusOK, w.Result().StatusCode)

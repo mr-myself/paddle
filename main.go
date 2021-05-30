@@ -10,12 +10,7 @@ import (
 	"github.com/ChubachiPT21/paddle/pkg/routes"
 	_ "github.com/go-sql-driver/mysql"
 
-
-	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
-	"github.com/ChubachiPT21/paddle/user"
-	"golang.org/x/crypto/bcrypt"
-
+	"github.com/ChubachiPT21/paddle/internal/usecase"
 )
 
 func main() {
@@ -43,7 +38,7 @@ func main() {
 	)
 	routes.AddRoutes(
 		v1,
-		paddle.CreateFeeds()...,
+		paddle.CreateFeeds(usecase.NewCreateFeedStruct())...,
 	)
 	routes.AddRoutes(
 		v1,
